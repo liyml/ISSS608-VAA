@@ -179,6 +179,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#working-with-ggtheme-package" id="toc-working-with-ggtheme-package" class="nav-link" data-scroll-target="#working-with-ggtheme-package"><strong>2.4.1 Working with ggtheme package</strong></a></li>
   <li><a href="#working-with-hrbthems-package" id="toc-working-with-hrbthems-package" class="nav-link" data-scroll-target="#working-with-hrbthems-package"><strong>2.4.2 Working with hrbthems package</strong></a></li>
   </ul></li>
+  <li><a href="#beyond-single-graph" id="toc-beyond-single-graph" class="nav-link" data-scroll-target="#beyond-single-graph"><strong>2.5 Beyond Single Graph</strong></a>
+  <ul class="collapse">
+  <li><a href="#creating-composite-graphics-pathwork-methods" id="toc-creating-composite-graphics-pathwork-methods" class="nav-link" data-scroll-target="#creating-composite-graphics-pathwork-methods"><strong>2.5.1 Creating Composite Graphics: pathwork methods</strong> <img src="https://r4va.netlify.app/chap02/img/image4.png" class="img-fluid" width="52"></a></li>
+  <li><a href="#combining-two-ggplot2-graphs" id="toc-combining-two-ggplot2-graphs" class="nav-link" data-scroll-target="#combining-two-ggplot2-graphs"><strong>2.5.2 Combining two ggplot2 graphs</strong></a></li>
+  <li><a href="#combining-three-ggplot2-graphs" id="toc-combining-three-ggplot2-graphs" class="nav-link" data-scroll-target="#combining-three-ggplot2-graphs"><strong>2.5.3 Combining three ggplot2 graphs</strong></a></li>
+  <li><a href="#creating-a-composite-figure-with-tag" id="toc-creating-a-composite-figure-with-tag" class="nav-link" data-scroll-target="#creating-a-composite-figure-with-tag"><strong>2.5.4 Creating a composite figure with tag</strong></a></li>
+  <li><a href="#creating-figure-with-insert" id="toc-creating-figure-with-insert" class="nav-link" data-scroll-target="#creating-figure-with-insert"><strong>2.5.5 Creating figure with insert</strong></a></li>
+  <li><a href="#creating-a-composite-figure-by-using-patchwork-and-ggtheme" id="toc-creating-a-composite-figure-by-using-patchwork-and-ggtheme" class="nav-link" data-scroll-target="#creating-a-composite-figure-by-using-patchwork-and-ggtheme"><strong>2.5.6 Creating a composite figure by using patchwork and ggtheme</strong></a></li>
+  </ul></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><strong>2.6 Reference</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -460,9 +470,166 @@ What can we learn from the code chunk above?</strong></p>
 <li><p><code>base_size</code> argument is used to increase the default axis label to 15, and</p></li>
 <li><p><code>grid</code> argument is used to remove the x-axis grid lines.</p></li>
 </ul>
-
-
 </section>
+</section>
+<section id="beyond-single-graph" class="level2">
+<h2 class="anchored" data-anchor-id="beyond-single-graph"><strong>2.5 Beyond Single Graph</strong></h2>
+<p>It is not unusual that multiple graphs are required to tell a compelling visual story. There are several ggplot2 extensions provide functions to compose figure with multiple graphs. In this section, you will learn how to create composite plot by combining multiple graphs. First, let us create three statistical graphics by using the code chunk below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MATHS)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of Maths scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> ENGLISH)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">boundary =</span> <span class="dv">100</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">"grey25"</span>, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill=</span><span class="st">"grey90"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Distribution of English scores"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lastly, we will draw a scatterplot for English score versus Maths score by as shown below</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>exam_data, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x=</span> MATHS, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y=</span>ENGLISH)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, </span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">size=</span><span class="fl">0.5</span>) <span class="sc">+</span>  </span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"English scores versus Maths scores for Primary 3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+</div>
+<section id="creating-composite-graphics-pathwork-methods" class="level3">
+<h3 class="anchored" data-anchor-id="creating-composite-graphics-pathwork-methods"><strong>2.5.1 Creating Composite Graphics: pathwork methods</strong> <img src="https://r4va.netlify.app/chap02/img/image4.png" class="img-fluid" width="52"></h3>
+<p>There are several ggplot2 extension’s functions support the needs to prepare composite figure by combining several graphs such as <a href="https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html"><code>grid.arrange()</code></a> of <strong>gridExtra</strong> package and <a href="https://wilkelab.org/cowplot/reference/plot_grid.html"><code>plot_grid()</code></a> of <a href="https://wilkelab.org/cowplot/index.html"><strong>cowplot</strong></a> package. In this section, I am going to shared with you an ggplot2 extension called <a href="https://patchwork.data-imaginist.com/"><strong>patchwork</strong></a> which is specially designed for combining separate ggplot2 graphs into a single figure.</p>
+<p>Patchwork package has a very simple syntax where we can create layouts super easily. Here’s the general syntax that combines:</p>
+<ul>
+<li><p>Two-Column Layout using the Plus Sign +.</p></li>
+<li><p>Parenthesis () to create a subplot group.</p></li>
+<li><p>Two-Row Layout using the Division Sign <code>/</code></p></li>
+</ul>
+</section>
+<section id="combining-two-ggplot2-graphs" class="level3">
+<h3 class="anchored" data-anchor-id="combining-two-ggplot2-graphs"><strong>2.5.2 Combining two ggplot2 graphs</strong></h3>
+<p>Figure in the tabset below shows a composite of two histograms created using patchwork. Note how simple the syntax used to create the plot!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="combining-three-ggplot2-graphs" class="level3">
+<h3 class="anchored" data-anchor-id="combining-three-ggplot2-graphs"><strong>2.5.3 Combining three ggplot2 graphs</strong></h3>
+<p>We can plot more complex composite by using appropriate operators. For example, the composite figure below is plotted by using:</p>
+<ul>
+<li><p>“/” operator to stack two ggplot2 graphs,</p></li>
+<li><p>“|” operator to place the plots beside each other,</p></li>
+<li><p>“()” operator the define the sequence of the plotting.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To learn more about, refer to&nbsp;<a href="https://patchwork.data-imaginist.com/articles/guides/assembly.html">Plot Assembly</a>.</p>
+</section>
+<section id="creating-a-composite-figure-with-tag" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-composite-figure-with-tag"><strong>2.5.4 Creating a composite figure with tag</strong></h3>
+<p>In order to identify subplots in text, <strong>patchwork</strong> also provides auto-tagging capabilities as shown in the figure below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>((p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'I'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-figure-with-insert" class="level3">
+<h3 class="anchored" data-anchor-id="creating-figure-with-insert"><strong>2.5.5 Creating figure with insert</strong></h3>
+<p>Beside providing functions to place plots next to each other based on the provided layout. With <a href="https://patchwork.data-imaginist.com/reference/inset_element.html"><code>inset_element()</code></a> of <strong>patchwork</strong>, we can place one or several plots or graphic elements freely on top or below another plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="sc">+</span> <span class="fu">inset_element</span>(p2, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">left =</span> <span class="fl">0.02</span>, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">bottom =</span> <span class="fl">0.7</span>, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">right =</span> <span class="fl">0.5</span>, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">top =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-a-composite-figure-by-using-patchwork-and-ggtheme" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-composite-figure-by-using-patchwork-and-ggtheme"><strong>2.5.6 Creating a composite figure by using patchwork and ggtheme</strong></h3>
+<p>Figure below is created by combining patchwork and theme_economist() of ggthemes package discussed earlier.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>patchwork <span class="ot">&lt;-</span> (p1 <span class="sc">/</span> p2) <span class="sc">|</span> p3</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>patchwork <span class="sc">&amp;</span> <span class="fu">theme_economist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Hands-on_Ex02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="reference" class="level2">
+<h2 class="anchored" data-anchor-id="reference"><strong>2.6 Reference</strong></h2>
+<ul>
+<li><p><a href="https://www.littlemissdata.com/blog/patchwork">Patchwork R package goes nerd viral</a></p></li>
+<li><p><a href="https://ggrepel.slowkow.com/">ggrepel</a></p></li>
+<li><p><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">ggthemes</a></p></li>
+<li><p><a href="https://cinc.rud.is/web/packages/hrbrthemes/">hrbrthemes</a></p></li>
+<li><p><a href="https://albert-rapp.de/post/2021-10-28-extend-plot-variety/">ggplot tips: Arranging plots</a></p></li>
+<li><p><a href="https://henrywang.nl/ggplot2-theme-elements-demonstration/">ggplot2 Theme Elements Demonstration</a></p></li>
+<li><p><a href="https://isabella-b.com/blog/ggplot2-theme-elements-reference/">ggplot2 Theme Elements Reference Sheet</a></p></li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
