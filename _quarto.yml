@@ -9,6 +9,8 @@ website:
         menu: 
         - text: "Hands-on Exercise 1"
           href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_EX01.html"
+        - text: "Hands-on Exercise 2"
+          href: "Hands-on_Ex/Hands-on_Ex01/Hands-on_EX02.html"
     right: 
       - href: index.qmd
         text: Home
@@ -21,4 +23,6 @@ format:
     toc: true
 
 editor: visual
+
+
 

@@ -1,0 +1,16 @@
+---
+title: "Hands-on Exercise 2"
+author: "Lai Meihao"
+---
+
+# 2.1 Overview
+
+In this chapter, you will be introduced to several ggplot extensions for creating more elegant and effective statistical graphics. By the end of this exercise, you will be able to:
+
+-   control the placement of annotation on a graph by using functions provided in ggrepel package,
+
+-   create professional publication quality figure by using functions provided in ggthemes and hrbrthemes packages,
+
+-   plot composite figure by combining ggplot2 graphs by using patchwork packages.
+
+2.2
