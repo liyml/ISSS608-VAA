@@ -152,7 +152,7 @@ gg_point <- ggplot(data=exam_data,
   ) +
   stat_summary(aes(y = MATHS),
     fun.data = mean_se,
-    geom = "errorbar", width = 0.2, size = 0.2
+    geom = "errorbar", width = 0.2, linewidth = 0.2
   )
 
 girafe(ggobj = gg_point,
@@ -436,11 +436,11 @@ crosstalk::bscols(gg,
                   widths = 5)        
 ```
 
-Things to learn from the code chunk:
-
--   *highlight()* is a function of **plotly** package. It sets a variety of options for brushing (i.e., highlighting) multiple plots. These options are primarily designed for linking multiple plotly graphs, and may not behave as expected when linking plotly to another htmlwidget package via crosstalk. In some cases, other htmlwidgets will respect these options, such as persistent selection in leaflet.
-
--   *bscols()* is a helper function of **crosstalk** package. It makes it easy to put HTML elements side by side. It can be called directly from the console but is especially designed to work in an R Markdown document. **Warning:** This will bring in all of Bootstrap!.
+> Things to learn from the code chunk:
+>
+> -   *highlight()* is a function of **plotly** package. It sets a variety of options for brushing (i.e., highlighting) multiple plots. These options are primarily designed for linking multiple plotly graphs, and may not behave as expected when linking plotly to another htmlwidget package via crosstalk. In some cases, other htmlwidgets will respect these options, such as persistent selection in leaflet.
+>
+> -   *bscols()* is a helper function of **crosstalk** package. It makes it easy to put HTML elements side by side. It can be called directly from the console but is especially designed to work in an R Markdown document. **Warning:** This will bring in all of Bootstrap!.
 
 ## **3.9 Reference**
 
@@ -496,9 +496,9 @@ Before we dive into the steps for creating an animated statistical graph, it’s
 
 2.  **Animation Attributes**: The animation attributes are the settings that control how the animation behaves. For example, you can specify the duration of each frame, the easing function used to transition between frames, and whether to start the animation from the current frame or from the beginning.
 
-**Tip**
-
-Before you start making animated graphs, you should first ask yourself: Does it makes sense to go through the effort? If you are conducting an exploratory data analysis, a animated graphic may not be worth the time investment. However, if you are giving a presentation, a few well-placed animated graphics can help an audience connect with your topic remarkably better than static counterparts.
+> **Tip**
+>
+> Before you start making animated graphs, you should first ask yourself: Does it makes sense to go through the effort? If you are conducting an exploratory data analysis, a animated graphic may not be worth the time investment. However, if you are giving a presentation, a few well-placed animated graphics can help an audience connect with your topic remarkably better than static counterparts.
 
 ## **4.2 Getting Started**
 
@@ -534,13 +534,17 @@ globalPop <- read_xls("data/GlobalPopulation.xls",
   mutate(Year = as.integer(Year))
 ```
 
--   **Things to learn from the code chunk above**
+-   <div>
 
-    -   [`read_xls()`](https://readxl.tidyverse.org/reference/read_excel.html) of **readxl** package is used to import the Excel worksheet.
+    > **Things to learn from the code chunk above**
+    >
+    > -   [`read_xls()`](https://readxl.tidyverse.org/reference/read_excel.html) of **readxl** package is used to import the Excel worksheet.
+    >
+    > -   `mutate_each_()` of dplyr package is used to convert all character data type into factor.
+    >
+    > -   `mutate` of dplyr package is used to convert data values of Year field into integer.
 
-    -   `mutate_each_()` of dplyr package is used to convert all character data type into factor.
-
-    -   `mutate` of dplyr package is used to convert data values of Year field into integer.
+    </div>
 
 Unfortunately, `mutate_each_()` was deprecated in dplyr 0.7.0. and `funs()` was deprecated in dplyr 0.8.0. In view of this, we will re-write the code by using [`mutate_at()`](https://r4va.netlify.app/chap04) as shown in the code chunk below.
 
@@ -674,17 +678,22 @@ In this sub-section, you will learn how to create an animated bubble plot by usi
 
 ```{r}
 bp <- globalPop %>%
-  plot_ly(x = ~Old, 
-          y = ~Young, 
-          size = ~Population, 
-          color = ~Continent,
-          sizes = c(2, 100),
-          frame = ~Year, 
-          text = ~Country, 
-          hoverinfo = "text",
-          type = 'scatter',
-          mode = 'markers'
-          ) %>%
+  plot_ly() %>%
+  add_trace(
+    x = ~Old, 
+    y = ~Young, 
+    size = ~Population, 
+    color = ~Continent,
+    sizes = c(2, 100),
+    frame = ~Year, 
+    text = ~Country,
+    hoverinfo = "text",
+    type = 'scatter',
+    mode = 'markers',
+    marker = list(
+      line = list(width = 1, color = "white")
+    )
+  ) %>%
   layout(showlegend = FALSE)
 bp
 ```
