@@ -678,24 +678,20 @@ In this sub-section, you will learn how to create an animated bubble plot by usi
 
 ```{r}
 bp <- globalPop %>%
-  plot_ly() %>%
-  add_trace(
-    x = ~Old, 
-    y = ~Young, 
-    size = ~Population, 
-    color = ~Continent,
-    sizes = c(2, 100),
-    frame = ~Year, 
-    text = ~Country,
-    hoverinfo = "text",
-    type = 'scatter',
-    mode = 'markers',
-    marker = list(
-      line = list(width = 1, color = "white")
-    )
+  plot_ly(x = ~Old, 
+          y = ~Young, 
+          size = ~log(Population),  # Log scaling
+          color = ~Continent,
+          frame = ~Year, 
+          text = ~Country, 
+          hoverinfo = "text",
+          type = 'scatter',
+          mode = 'markers',
+          marker = list(sizemode = "area")
   ) %>%
   layout(showlegend = FALSE)
 bp
+
 ```
 
 ## **4.5 Reference**
