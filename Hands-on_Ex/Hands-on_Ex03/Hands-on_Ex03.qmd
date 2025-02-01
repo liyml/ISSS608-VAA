@@ -1,6 +1,11 @@
 ---
 title: "Hands On Exercise 3"
 author: "Lai Meihao"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
 ---
 
 # **3  Programming Interactive Data Visualisation with R**
