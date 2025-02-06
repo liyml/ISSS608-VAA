@@ -1,6 +1,11 @@
 ---
 title: "Hands-on Exercise 2"
 author: "Lai Meihao"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
 ---
 
 ## **2.1 Overview**
