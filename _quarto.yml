@@ -25,6 +25,10 @@ website:
         menu: 
         - text: "Take-home Exercise 1"
           href: "Take-home_Ex/Take-home_Ex1/Take-home_Ex1.html"
+      - text: "In-Class Exercise"
+        menu:
+        - text: "In-Class Exercise 4"
+          href: "In-Class_Ex/In-class_Ex04/In-class_Ex04.html"
     right: 
       - href: index.qmd
         text: Home

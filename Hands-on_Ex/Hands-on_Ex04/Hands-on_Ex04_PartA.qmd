@@ -202,8 +202,7 @@ ggplot(exam,
                point_colour = NA)
 ```
 
-| **\
-  Things to learn from the code chunk above**
+|  **Things to learn from the code chunk above**
 | We remove the slab interval by setting .width = 0 and point_colour = NA.
 
 ### **9.4.2 Adding the boxplot with `geom_boxplot()`**
