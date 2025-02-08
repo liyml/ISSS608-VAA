@@ -410,13 +410,27 @@
     "href": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html",
     "title": "In-Class Ex04",
     "section": "",
-    "text": "For this In-Class Exercise, the following R packages will be used.\n\npacman::p_load(ggdist, ggridges, ggthemes,\n               colorspace, tidyverse)\n\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\n\nggplot(exam_data, \n       aes(x = ENGLISH,\n           y = CLASS)) + \n  geom_boxplot()"
+    "text": "The code chunk below will be used load these R packages into RStudio environment.\n\npacman::p_load(haven, SmartEDA, tidymodels,\n               tidyverse)\n\n\n\n\n\nFor the purpose of this In-Class Exercise, Exam_data.csv will be used.\nIn the code chunk below, read_csv () of reader packages is used to import Exam_data.csv into R and saved it into a tibble data.frame.\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\n\n\n\n\nThe boxplot below is plotted by using ggplot.\n\nggplot(exam_data, \n       aes(x = ENGLISH,\n           y = CLASS)) + \n  geom_boxplot()"
   },
   {
     "objectID": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html#getting-start",
     "href": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html#getting-start",
     "title": "In-Class Ex04",
     "section": "",
-    "text": "For this In-Class Exercise, the following R packages will be used.\n\npacman::p_load(ggdist, ggridges, ggthemes,\n               colorspace, tidyverse)\n\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")\n\n\nggplot(exam_data, \n       aes(x = ENGLISH,\n           y = CLASS)) + \n  geom_boxplot()"
+    "text": "The code chunk below will be used load these R packages into RStudio environment.\n\npacman::p_load(haven, SmartEDA, tidymodels,\n               tidyverse)"
+  },
+  {
+    "objectID": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html#data-import",
+    "href": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html#data-import",
+    "title": "In-Class Ex04",
+    "section": "",
+    "text": "For the purpose of this In-Class Exercise, Exam_data.csv will be used.\nIn the code chunk below, read_csv () of reader packages is used to import Exam_data.csv into R and saved it into a tibble data.frame.\n\nexam_data &lt;- read_csv(\"data/Exam_data.csv\")"
+  },
+  {
+    "objectID": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html#visualizing-distribution-with-boxplot",
+    "href": "In-Class_Ex/In-class_Ex04/In-class_Ex04.html#visualizing-distribution-with-boxplot",
+    "title": "In-Class Ex04",
+    "section": "",
+    "text": "The boxplot below is plotted by using ggplot.\n\nggplot(exam_data, \n       aes(x = ENGLISH,\n           y = CLASS)) + \n  geom_boxplot()"
   }
 ]

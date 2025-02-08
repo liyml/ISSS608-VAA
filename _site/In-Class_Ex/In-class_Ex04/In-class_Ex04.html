@@ -209,6 +209,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#in-class-exercise-4" id="toc-in-class-exercise-4" class="nav-link active" data-scroll-target="#in-class-exercise-4">In-Class Exercise 4</a>
   <ul class="collapse">
   <li><a href="#getting-start" id="toc-getting-start" class="nav-link" data-scroll-target="#getting-start">Getting Start</a></li>
+  <li><a href="#data-import" id="toc-data-import" class="nav-link" data-scroll-target="#data-import">Data Import</a></li>
+  <li><a href="#visualizing-distribution-with-boxplot" id="toc-visualizing-distribution-with-boxplot" class="nav-link" data-scroll-target="#visualizing-distribution-with-boxplot">Visualizing Distribution with Boxplot</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -252,14 +254,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-start" class="level2">
 <h2 class="anchored" data-anchor-id="getting-start">Getting Start</h2>
 <hr>
-<p>For this In-Class Exercise, the following R packages will be used.</p>
+<p>The code chunk below will be used load these R packages into RStudio environment.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggdist, ggridges, ggthemes,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               colorspace, tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(haven, SmartEDA, tidymodels,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="data-import" class="level2">
+<h2 class="anchored" data-anchor-id="data-import">Data Import</h2>
+<hr>
+<p>For the purpose of this In-Class Exercise, Exam_data.csv will be used.</p>
+<p>In the code chunk below, read_csv () of reader packages is used to import Exam_data.csv into R and saved it into a tibble data.frame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>exam_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Exam_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="visualizing-distribution-with-boxplot" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-distribution-with-boxplot">Visualizing Distribution with Boxplot</h2>
+<hr>
+<p>The boxplot below is plotted by using <strong>ggplot</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(exam_data, </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> ENGLISH,</span>
