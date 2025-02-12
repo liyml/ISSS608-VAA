@@ -347,7 +347,7 @@ This section is about how to install a R package which is not available in cran.
 install.packages("devtools")
 ```
 
-2.   Next, you will load the *devtools* library and install the package found in github by using the codes below.
+2.  Next, you will load the *devtools* library and install the package found in github by using the codes below.
 
 ```{r}
 library(devtools)

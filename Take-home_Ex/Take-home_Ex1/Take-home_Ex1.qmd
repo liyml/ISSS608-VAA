@@ -45,7 +45,10 @@ The following R packages were used in this Take-Home exercise:
 -   [**ggpubr**](https://rpkgs.datanovia.com/ggpubr/) for creating publication ready ggplot2 plots.
 
 ```{r}
-pacman::p_load(haven, tidyverse, reshape2, ggthemr, ggridges, ggdist, ggpubr)
+pacman::p_load(tidyverse, haven,
+               ggrepel, ggthemes,
+               ggridges, ggdist,colorspace,ggdist,
+               patchwork, scales)
 ```
 
 Importing data
@@ -62,6 +65,144 @@ Data Preparation
 
 Check for Duplicate
 
+```{r}
+heart_attack_Jpn[duplicated(heart_attack_Jpn),]
+```
+
 Check and handle the missing value
 
+```{r}
+for(column_name in names(heart_attack_Jpn)) {
+  na_count <- sum(is.na(heart_attack_Jpn[[column_name]]))
+
+  if (na_count > 0) {
+    message("Column '", column_name, "' has ", na_count, " NA values.")
+  }
+}
+```
+
 Variable selection
+
+```{r}
+heart_attack_Jpn %>%
+  ggplot(aes(x = Age, fill = factor(Heart_Attack_Occurrence))) +
+  geom_bar(position = "dodge") +
+  scale_fill_brewer(name = "Heart Attack", labels = c("No", "Yes"), palette = "Set2") +
+  labs(title = "Age Distribution by Heart Attack Occurrence",
+       x = "Age",
+       y = "Count") 
+```
+
+```{r}
+# BMI vs Heart Rate
+heart_attack_Jpn %>%
+  ggplot(aes(x = BMI, y = Heart_Rate, 
+             color = factor(Heart_Attack_Occurrence))) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE) +
+  scale_color_brewer(name = "Heart Attack", labels = c("No", "Yes"), palette = "Set2") +
+  labs(title = "BMI vs Heart Rate",
+       x = "BMI",
+       y = "Heart Rate") +
+  theme_minimal()
+```
+
+```{r}
+# Lifestyle Factors
+heart_attack_Jpn %>%
+  pivot_longer(cols = c(Physical_Activity, Diet_Quality, Stress_Levels),
+               names_to = "Factor",
+               values_to = "Value") %>%
+  ggplot(aes(x = Factor, y = Value, fill = factor(Heart_Attack_Occurrence))) +
+  geom_boxplot() +
+  scale_fill_brewer(name = "Heart Attack", labels = c("No", "Yes"), palette = "Set2") +
+  labs(title = "Lifestyle Factors Distribution",
+       x = "Factor",
+       y = "Value") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+# Create more meaningful age groups and boxplot visualization
+heart_attack_Jpn %>%
+  mutate(age_group = cut(Age, 
+                        breaks = c(0, 30, 40, 50, 60, 100),
+                        labels = c("<30", "30-40", "40-50", "50-60", "60+"))) %>%
+  ggplot(aes(x = age_group, y = BMI, fill = factor(Heart_Attack_Occurrence))) +
+  geom_boxplot() +
+  scale_fill_brewer(name = "Heart Attack", labels = c("No", "Yes"), palette = "Set2") +
+  labs(title = "BMI Distribution Across Age Groups by Heart Attack Status",
+       subtitle = "Showing median, quartiles, and outliers",
+       x = "Age Group",
+       y = "BMI") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+```{r}
+# Create a density plot with facets
+heart_attack_Jpn %>%
+  ggplot(aes(x = BMI, fill = factor(Heart_Attack_Occurrence))) +
+  geom_density(alpha = 0.5) +
+  facet_wrap(~cut(Age, breaks = c(0, 30, 40, 50, 60, 100),
+                  labels = c("<30", "30-40", "40-50", "50-60", "60+"))) +
+  scale_fill_brewer(name = "Heart Attack", labels = c("No", "Yes"), palette = "Set2") +
+  labs(title = "BMI Distribution by Age Group and Heart Attack Status",
+       x = "BMI",
+       y = "Density") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+```{r}
+# Load required libraries
+library(tidyverse)
+library(corrplot)
+library(ggcorrplot)
+
+# First, let's see what data types we have
+str(heart_attack_Jpn)
+
+# Prepare the data more carefully
+heart_attack_corr <- heart_attack_Jpn %>%
+  # Remove any character/factor columns that shouldn't be in correlation
+  select_if(function(x) is.numeric(x) || is.factor(x) || is.character(x)) %>%
+  # Convert factors to numeric meaningfully
+  mutate(
+    # Convert binary factors to 0/1
+    Heart_Attack_Occurrence = as.numeric(as.factor(Heart_Attack_Occurrence)) - 1,
+    # Convert any other categorical variables appropriately
+    Gender = as.numeric(as.factor(Gender)) - 1,
+    # Add other categorical variables as needed
+    across(where(is.numeric), as.numeric)
+  ) %>%
+  # Remove any remaining non-numeric columns
+  select_if(is.numeric)
+
+# Check the structure after conversion
+str(heart_attack_corr)
+
+# Calculate correlation matrix
+correlation_matrix <- cor(heart_attack_corr, use = "pairwise.complete.obs")
+
+# Create correlation plot
+corrplot(correlation_matrix,
+         method = "color",
+         type = "upper",
+         order = "hclust",
+         addCoef.col = "black",
+         tl.col = "
+```
+
+```{r}
+ggplot(exam,
+       aes(x = ENGLISH, 
+           y = CLASS, 
+           fill = 0.5 - abs(0.5-stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", 
+                      calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Tail probability",
+                       direction = -1) +
+  theme_ridges()
+```
