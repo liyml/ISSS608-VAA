@@ -10,4 +10,58 @@ execute:
   freeze: true
 ---
 
+Overview
 
+Background
+
+A heart attach occurs when blood flow to the heart muscle is reduced or block. The amount of damage and recovery time depends
+
+According to recent studies, there is a concerning rise in number of heart issues among adults, with reports showing a significant increase in heart attack and cardiovascular disease rates in people under 40, largely attributed to unhealthy lifestyle factors like poor diet, lack of exerciose and smoking.
+
+The objective of this exercise is to use appropriate Exploratory Data Analysis Methods and tidyverse family package to process the data, and the statistical graphics were prepared using ggplot2 and its extension.
+
+The Dataset
+
+The dataset offer a depth exploration of heart attack incidents in Japan, focusing on the differences between youth and adult age groups, it provide valuable insight into the health profiles, risk factors and potential triggers associated with heart attack s among female and male.
+
+Getting Started
+
+Setting and Analytical tools
+
+The following R packages were used in this Take-Home exercise:
+
+-   [**haven**](https://haven.tidyverse.org/) for importing SAS files;
+
+-   [**tidyverse**](https://www.tidyverse.org/) (i.e. readr, tidyr, dplyr, ggplot2) for performing data science tasks such as importing, tidying, and wrangling data, as well as creating graphics based on The Grammar of Graphics;
+
+-   [**reshape2**](https://seananderson.ca/2013/10/19/reshape/) for transforming data between wide and long formats;
+
+-   [**ggthemr**](https://www.shanelynn.ie/themes-and-colours-for-r-ggplots-with-ggthemr/) for aesthetic themes created by user, Ciarán Tobin;
+
+-   [**ggridges**](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) for creating ridgeline plots;
+
+-   [**ggdist**](https://mjskay.github.io/ggdist/) for visualising distributions and uncertainty; and
+
+-   [**ggpubr**](https://rpkgs.datanovia.com/ggpubr/) for creating publication ready ggplot2 plots.
+
+```{r}
+pacman::p_load(haven, tidyverse, reshape2, ggthemr, ggridges, ggdist, ggpubr)
+```
+
+Importing data
+
+The data set used in this exercise is
+
+The data is imported as
+
+```{r}
+heart_attack_Jpn <- read_csv("data/japan_heart_attack_dataset.csv")
+```
+
+Data Preparation
+
+Check for Duplicate
+
+Check and handle the missing value
+
+Variable selection
