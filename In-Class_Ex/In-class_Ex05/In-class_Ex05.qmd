@@ -10,9 +10,9 @@ execute:
   freeze: true
 ---
 
-# In Class Exercise  5
+# In Class Exercise 5
 
-## Getting Started 
+## Getting Started
 
 ------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ execute:
 pacman::p_load(tidyverse, readxl,SmartEDA,easystats, gtsummary,ggstatsplot)
 ```
 
-## Importing Data 
+## Importing Data
 
 ------------------------------------------------------------------------
 
