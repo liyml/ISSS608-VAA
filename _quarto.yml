@@ -43,7 +43,9 @@ website:
           href: "In-Class_Ex/In-class_Ex04/In-class_Ex04.html"
         - text: "In-Class Exercise 5"
           href: "In-Class_Ex/In-class_Ex05/In-class_Ex05.html"
-    right: 
+        - text: "In-Class Exercise 7"   
+          href: "In-Class_Ex/In-class_Ex07/In-class_Ex07.html"
+right: 
       - href: index.qmd
         text: Home
       - about.qmd

@@ -1,0 +1,92 @@
+---
+title: "In class Exercise 7"
+author: "Lai Meihao"
+date: "March 1st, 2025"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+## **Getting Started**
+
+------------------------------------------------------------------------
+
+For the purpose of this In-class exercise the following R package will be used.
+
+```{r}
+pacman::p_load(tidyverse, tsibble, feasts, fable, seasonal,readxl)
+```
+
+### **Importing the data**
+
+```{r}
+ts_data <- read_csv(
+  "data/visitor_arrivals_by_air.csv")
+```
+
+Convert data type of Month-Year field from Character to Date.
+
+```{r}
+ts_data$`Month-Year` <- dmy(
+  ts_data$`Month-Year`)
+```
+
+### **Conventional base `ts` object versus `tibble` object**
+
+```{r}
+ts_data
+```
+
+### **Conventional base `ts` object versus `tibble` object**
+
+```{r}
+ts_data_ts <- ts(ts_data)       
+head(ts_data_ts)
+```
+
+### **Converting `tibble` object to `tsibble` object**
+
+```{r}
+ts_tsibble <- ts_data %>%
+  mutate(Month = yearmonth(`Month-Year`)) %>%
+  as_tsibble(index = `Month`)
+```
+
+###  **tsibble object**
+
+```{r}
+ ts_tsibble
+```
+
+## **Visualising Time-series Data**
+
+------------------------------------------------------------------------
+
+```{r}
+ts_longer <- ts_data %>%
+  pivot_longer(cols = c(2:34),
+               names_to = "Country",
+               values_to = "Arrivals")
+```
+
+```{r}
+ts_longer %>%
+  filter(Country == "Malaysia") %>%
+  ggplot(aes(x = `Month-Year`, 
+             y = Arrivals))+
+  geom_line(size = 0.5)
+```
+
+```{r}
+ggplot(data = ts_longer, 
+       aes(x = `Month-Year`, 
+           y = Arrivals))+
+  geom_line(size = 0.5) +
+  facet_wrap(~ Country,
+             ncol = 3,
+             scales = "free_y") +
+  theme_bw()
+```
