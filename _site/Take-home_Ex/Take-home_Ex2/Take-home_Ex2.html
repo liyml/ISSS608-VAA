@@ -345,13 +345,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="setting-the-analytic-tools">2.1 Setting the Analytic Tools</h3>
 <p>The following R package is used in this take-home exercise :</p>
 <ul>
-<li><p><a href="https://www.tidyverse.org/"><strong>tidyverse</strong></a> (i.e.&nbsp;readr, tidyr, dplyr, ggplot2) for performing data science tasks such as importing, tidying, and wrangling data, as well as creating graphics based on The Grammar of Graphics;</p></li>
-<li><p><a href="https://seananderson.ca/2013/10/19/reshape/"><strong>reshape2</strong></a> for transforming data between wide and long formats;</p></li>
-<li><p><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html"><strong>ggthemes</strong></a> for extra themes, geoms, and scales for ggplot2;</p></li>
-<li><p><a href="https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html"><strong>ggridges</strong></a> for creating ridgeline plots;</p></li>
-<li><p><a href="https://mjskay.github.io/ggdist/"><strong>ggdist</strong></a> for visualising distributions and uncertainty; and</p></li>
-<li><p><a href="https://rpkgs.datanovia.com/ggpubr/"><strong>ggpubr</strong></a> for creating publication ready ggplot2 plots.</p></li>
-<li><p>lubridate for converting category data into date format</p></li>
+<li><strong>tidyverse</strong> – A collection of R packages designed for data manipulation, visualization, and analysis, including <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, etc.</li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>ggthemes</strong> – Provides additional themes, scales, and color palettes for <code>ggplot2</code>, useful for enhancing visual appeal.</li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>scales</strong> – Helps format numerical values in plots (e.g., percentages, currency, scientific notation).</li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>lubridate</strong> – Simplifies working with dates and times in R.</li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>treemap</strong> – Enables the creation of treemaps, which visualize hierarchical data using nested rectangles.</li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>SmartEDA</strong> – Automates exploratory data analysis (EDA), generating summary statistics, variable distributions, and correlation matrices.</li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>forecast</strong> – Provides tools for time-series forecasting, including ARIMA, ETS, and other forecasting models.</li>
 </ul>
 <p>The code chunk below using the p_load() function loads the specified packages, and if any package is missing, it automatically installs it before loading.</p>
 <div class="cell">

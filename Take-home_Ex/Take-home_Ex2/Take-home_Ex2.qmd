@@ -44,19 +44,31 @@ The specific tasks are :
 
 The following R package is used in this take-home exercise :
 
--   [**tidyverse**](https://www.tidyverse.org/) (i.e. readr, tidyr, dplyr, ggplot2) for performing data science tasks such as importing, tidying, and wrangling data, as well as creating graphics based on The Grammar of Graphics;
+-   **tidyverse** – A collection of R packages designed for data manipulation, visualization, and analysis, including `ggplot2`, `dplyr`, `tidyr`, `readr`, etc.
 
--   [**reshape2**](https://seananderson.ca/2013/10/19/reshape/) for transforming data between wide and long formats;
+<!-- -->
 
--   [**ggthemes**](https://ggplot2.tidyverse.org/reference/ggtheme.html) for extra themes, geoms, and scales for ggplot2;
+-   **ggthemes** – Provides additional themes, scales, and color palettes for `ggplot2`, useful for enhancing visual appeal.
 
--   [**ggridges**](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) for creating ridgeline plots;
+<!-- -->
 
--   [**ggdist**](https://mjskay.github.io/ggdist/) for visualising distributions and uncertainty; and
+-   **scales** – Helps format numerical values in plots (e.g., percentages, currency, scientific notation).
 
--   [**ggpubr**](https://rpkgs.datanovia.com/ggpubr/) for creating publication ready ggplot2 plots.
+<!-- -->
 
--   lubridate for converting category data into date format
+-   **lubridate** – Simplifies working with dates and times in R.
+
+<!-- -->
+
+-   **treemap** – Enables the creation of treemaps, which visualize hierarchical data using nested rectangles.
+
+<!-- -->
+
+-   **SmartEDA** – Automates exploratory data analysis (EDA), generating summary statistics, variable distributions, and correlation matrices.
+
+<!-- -->
+
+-   **forecast** – Provides tools for time-series forecasting, including ARIMA, ETS, and other forecasting models.
 
 The code chunk below using the p_load() function loads the specified packages, and if any package is missing, it automatically installs it before loading.
 
