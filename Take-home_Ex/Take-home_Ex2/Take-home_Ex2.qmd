@@ -623,7 +623,7 @@ p
 
 ------------------------------------------------------------------------
 
-### 5.1 Data Preparation 
+### 5.1 Data Preparation
 
 The below code chunk assign the dataset TradebyCommodity1 to df, the Date column is converted to date format.
 
@@ -637,7 +637,7 @@ df <- df %>%
   mutate(across(where(is.character), ~ as.numeric(gsub(",", "", .))))
 ```
 
-### 5.2 Creating a time series object 
+### 5.2 Creating a time series object
 
 The below code chunk create a new time frame df_ts, selecting only Date and Total Merchandise Trade At Current Price. The series starts from the earliest available year and month.
 
@@ -652,7 +652,7 @@ ts_data <- ts(df_ts$Total.Merchandise.Trade...At.Current.Prices.,
 
 ```
 
-### 5.3 Data Visualization 
+### 5.3 Data Visualization
 
 The below code chunk generated a line plot using ggplot 2. The Date is at X-axis, Total Merchandise Trade is at Y-axis, the blue line represents the historical trade value.
 
@@ -682,7 +682,7 @@ future_dates <- seq.Date(from = max(df_ts$Date) + months(1),
 
 ```
 
-### 5.5 Creating Future Forecast Data 
+### 5.5 Creating Future Forecast Data
 
 The below code generate the future dates starting from the latest available date +1 month. A forecast dataframe (forecaste_df) is created, storing Date, forecasted Value from ARMA and Holt-Winters.
 
@@ -693,15 +693,15 @@ forecast_df <- data.frame(Date = future_dates,
 
 ```
 
-### 5.6 Forecast Visualization 
+### 5.6 Forecast Visualization
 
 The below code visualize the forecasted result, the blue line represent the historical trade value.
 
--    **Red dashline** : ARIMA forecast
+-   **Red dashline** : ARIMA forecast
 
 -   **Green dotted line** :Holt-Winters forecast
 
--    **Black dotted vertical line** : the separation between historical and forecasted values.
+-   **Black dotted vertical line** : the separation between historical and forecasted values.
 
 -   **X-axis**: months with a 6-month interval
 
@@ -720,11 +720,11 @@ ggplot(df_ts, aes(x = Date, y = Total.Merchandise.Trade...At.Current.Prices.)) +
   geom_vline(xintercept = max(df_ts$Date), linetype = "dotted", color = "black")
 ```
 
-## Conclusion 
+## Conclusion
 
 This take-home exercise explored the changing trends and patterns of Singapore's international trade since 2015. Three graphs were analyzed, highlighting their pros and cons, followed by sketches of their proposed remakes. Additionally, the forecast for Singapore's Oil Trade over the next 36 months (from 2025 onwards) was made using both ARIMA and Holt-Winters models. These forecasts provide valuable insights into the expected future trends in Singapore's commodity trade. To further refine these predictions, incorporating additional external variables, such as global oil price trends or geopolitical events, could enhance the accuracy of the forecasting models.
 
-## Reference 
+## Reference
 
 -   [R for Visual Analytics](https://r4va.netlify.app/)
 
