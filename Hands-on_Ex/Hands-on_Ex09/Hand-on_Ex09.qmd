@@ -1,0 +1,11 @@
+---
+title: "Hands on Ex 09"
+author: "Lai Meihao"
+date: "March 20, 2025"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
