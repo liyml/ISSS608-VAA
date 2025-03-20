@@ -474,9 +474,6 @@ In the code chunk below, Fruchterman and Reingold layout is used.
 
 ```{r}
 
-GAStech_edges_aggregated <- GAStech_edges_aggregated %>%
-  rename(from = source, to = target)
-
 visNetwork(GAStech_nodes, GAStech_edges_aggregated) %>%
   visIgraphLayout(layout = "layout_with_fr")
 
