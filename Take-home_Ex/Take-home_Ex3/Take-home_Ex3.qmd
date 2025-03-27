@@ -1,0 +1,53 @@
+---
+title: "Take Home Exercise 3"
+author: "Lai Meihao"
+date: "March 22, 2025"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+1.  Overview
+
+1.1 Project Brief
+
+Take home exercise 3 is a preliminary work of the group project - blue pulse. Water is essential to life, yet billions worldwide still lack access to safe drinking water and sanitation. Waterborne disease such as acute hepatitis A and diarrhea continue to pose series public health threats, particularly in regions with inadequate water access. SDG 6 aims to ensure universal access to water and sanitation The project aims to understand the 1) understand the distribution of water access and safety by region, 2) analyze the long-term effects of water access on health outcome.
+
+The project team consists of three members and each member will take one of the main prototype modules as follows:
+
+-   Exploratory Data Analysis (initial & treemap)
+
+-   Panel Linear Model for observations over time for multiple entities (regions, countries)
+
+-   Confirmatory Data Analysis.
+
+1.2 Project Objectives
+
+The project will using WDI from world bank and burden of disease from institute for health metrics and evaluation. The objective of this take-home exercise is to build a prototype - user interface design on Panel Linear Model.
+
+```{r}
+pacman::p_load(tidyverse, ggplot2, plm,readxl)
+```
+
+```{r}
+WDI <- read.csv("data/cd584ca9-08f7-46dd-87c1-00ce4af84b71_Data.csv")
+```
+
+```{r}
+Disease <- "data/WaterandDiseasebywhoregion.xlsx"
+
+sheet_names <- excel_sheets(Disease)
+
+data_excel <- lapply(sheet_names, function(sheet) {
+  read_excel(Disease, sheet = sheet)
+})
+
+names(data_excel) <- sheet_names
+
+print(names(data_excel)) 
+str(data_excel)          
+
+```
