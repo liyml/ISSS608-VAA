@@ -363,3 +363,234 @@ interactive_plot <- plot_ly(data,
 interactive_plot
 
 ```
+
+# 6.Shiny
+
+```{r}
+library(shiny)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(DT)
+library(tidyr)
+
+
+combined_df <- read.csv("combined_complete_data.csv", stringsAsFactors = FALSE)
+
+# Ensure Year is numeric and add a DataSource column if not already present
+combined_df$Year <- as.numeric(combined_df$Year)
+combined_df$DataSource <- ifelse(combined_df$Year > 2020, "Forecast", "Actual")
+
+# Define the UI
+ui <- fluidPage(
+  titlePanel("WASH Variables & Disease Rates Visualization"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      # Variable type selection
+      radioButtons("variableType", 
+                   "Select Variable Type:",
+                   choices = c("WASH Variables", "Disease Rates", "Compare Both"),
+                   selected = "Compare Both"),
+      
+      # WASH variable selection
+      conditionalPanel(
+        condition = "input.variableType == 'WASH Variables' || input.variableType == 'Compare Both'",
+        selectInput("washVarsSelect", 
+                    "Select WASH Variables:",
+                    choices = c("WaterStress", "OpenDefecation", "BasicWaterServices", 
+                                "BasicSanitationServices", "SafeManagedWaterServices", 
+                                "SafeManagedSanitationServices", "PopulationDensity", 
+                                "WaterProductivity"),
+                    selected = c("BasicWaterServices", "WaterStress"),
+                    multiple = TRUE)
+      ),
+      
+      # Disease selection
+      conditionalPanel(
+        condition = "input.variableType == 'Disease Rates' || input.variableType == 'Compare Both'",
+        selectInput("diseaseSelect", 
+                    "Select Disease Rates:",
+                    choices = c("TyphoidRate", "DiarrheaRate", "HepatitisRate", "UnsafeRisk"),
+                    selected = "TyphoidRate",
+                    multiple = TRUE)
+      ),
+      
+      # Region selection
+      selectInput("regionSelect", 
+                  "Select Regions:",
+                  choices = unique(combined_df$Region),
+                  selected = "African Region",
+                  multiple = TRUE),
+      
+      # Visualization type
+      selectInput("visualizationType", 
+                  "Visualization Type:",
+                  choices = c("Time Series", "Scatter Plot", "Bar Chart", "Heatmap"),
+                  selected = "Time Series"),
+      
+      # Data source selection
+      checkboxGroupInput("dataSourceSelect",
+                         "Data Source:",
+                         choices = c("Actual", "Forecast"),
+                         selected = c("Actual", "Forecast")),
+      
+      # Time selection
+      sliderInput("yearSelect",
+                  "Select Years:",
+                  min = min(combined_df$Year),
+                  max = max(combined_df$Year),
+                  value = c(min(combined_df$Year), max(combined_df$Year)),
+                  step = 1, ticks = TRUE)
+    ),
+    
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Visualization", 
+                 plotlyOutput("mainPlot", height = "600px")),
+        
+        tabPanel("Correlation Analysis",
+                 plotlyOutput("correlationPlot", height = "600px")),
+        
+        tabPanel("Data Table", 
+                 DT::dataTableOutput("dataTable"))
+      )
+    )
+  )
+)
+
+# Define server function
+server <- function(input, output, session) {
+  
+  # Reactive expression for filtered data
+  filtered_data <- reactive({
+    data <- combined_df
+    # Apply year filter
+    data <- data %>%
+      filter(Year >= input$yearSelect[1] & Year <= input$yearSelect[2]) %>%
+      filter(Region %in% input$regionSelect)
+    
+    # Filter by data source (Actual/Forecast)
+    data <- data %>%
+      filter(DataSource %in% input$dataSourceSelect)
+    
+    return(data)
+  })
+  
+  # Main plot rendering
+  output$mainPlot <- renderPlotly({
+    data <- filtered_data()
+    
+    # Check if data is available
+    if (nrow(data) == 0) {
+      return(ggplotly(ggplot() + 
+                      annotate("text", x = 0.5, y = 0.5, label = "No data to display") + 
+                      theme_void()))
+    }
+    
+    selected_vars <- if (input$variableType == "WASH Variables") {
+      input$washVarsSelect
+    } else if (input$variableType == "Disease Rates") {
+      input$diseaseSelect
+    } else {  # Compare Both
+      c(input$washVarsSelect, input$diseaseSelect)
+    }
+    
+    # Reshape data for plotting if multiple variables are selected
+    plot_data <- data %>%
+      select(Region, Year, DataSource, all_of(selected_vars)) %>%
+      pivot_longer(
+        cols = all_of(selected_vars),
+        names_to = "Variable",
+        values_to = "Value"
+      )
+    
+    # Choose plot based on selected visualization type
+    if (input$visualizationType == "Time Series") {
+      p <- ggplot(plot_data, aes(x = Year, y = Value, color = Variable, linetype = DataSource)) +
+        geom_line(size = 1, alpha = 0.6) +  # Make lines less bright
+        geom_point(size = 2) +  # Smaller dots
+        aes(color = interaction(Variable, Region)) +  # Different color for different variable-region combinations
+        labs(title = "Time Series of Selected Variables",
+             y = "Value") +
+        theme_minimal() +
+        theme(legend.position = "bottom") +
+        scale_linetype_manual(values = c("solid", "dashed"))  # Dashed line for forecasted data
+    } else if (input$visualizationType == "Scatter Plot") {
+      p <- ggplot(plot_data, aes(x = Year, y = Value, color = Variable, shape = DataSource)) +
+        geom_point(size = 3) +  # Dots for scatter plot
+        labs(title = "Scatter Plot of Selected Variables",
+             x = "Year", y = "Value") +
+        theme_minimal()
+    } else if (input$visualizationType == "Bar Chart") {
+      p <- ggplot(plot_data, aes(x = Year, y = Value, fill = Variable)) +
+        geom_bar(stat = "identity", position = "dodge") +
+        labs(title = "Bar Chart of Selected Variables",
+             x = "Year", y = "Value") +
+        theme_minimal()
+    } else if (input$visualizationType == "Heatmap") {
+      p <- ggplot(plot_data, aes(x = Year, y = Variable, fill = Value)) +
+        geom_tile() +
+        labs(title = "Heatmap of Selected Variables",
+             x = "Year", y = "Variable") +
+        scale_fill_viridis_c() +
+        theme_minimal()
+    }
+    
+    ggplotly(p)
+  })
+  
+  # Correlation plot
+  output$correlationPlot <- renderPlotly({
+    data <- filtered_data()
+    
+    if (nrow(data) == 0) {
+      return(ggplotly(ggplot() + 
+                      annotate("text", x = 0.5, y = 0.5, label = "Not enough data for correlation analysis") + 
+                      theme_void()))
+    }
+    
+    selected_vars <- if (input$variableType == "WASH Variables") {
+      input$washVarsSelect
+    } else if (input$variableType == "Disease Rates") {
+      input$diseaseSelect
+    } else {  # Compare Both
+      c(input$washVarsSelect, input$diseaseSelect)
+    }
+    
+    # Compute correlation between selected variables
+    cors <- cor(data[selected_vars], use = "complete.obs")
+    
+    # Create correlation heatmap
+    p <- ggplot(as.data.frame(as.table(cors)), aes(Var1, Var2, fill = Freq)) +
+      geom_tile() +
+      scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
+      labs(title = "Correlation Between WASH Variables and Disease Rates",
+           x = "Variables", y = "Variables") +
+      theme_minimal()
+    
+    ggplotly(p)
+  })
+  
+  # Data table output
+  output$dataTable <- DT::renderDataTable({
+    data <- filtered_data()
+    selected_vars <- if (input$variableType == "WASH Variables") {
+      input$washVarsSelect
+    } else if (input$variableType == "Disease Rates") {
+      input$diseaseSelect
+    } else {  # Compare Both
+      c(input$washVarsSelect, input$diseaseSelect)
+    }
+    
+    DT::datatable(
+      data %>% select(Region, Year, DataSource, all_of(selected_vars)),
+      options = list(pageLength = 15)
+    )
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+
+```
