@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lai Meihao">
+<meta name="dcterms.date" content="2025-03-27">
+
+<title>Take-home Exercise 3 Part 2 – ISSS608-VAA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="../../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<link href="../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+<link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+
+<script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">ISSS608-VAA</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Hands-on Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex01/Hands-on_EX01.html">
+ <span class="dropdown-text">Hands-on Exercise 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex02/Hands-on_Ex02.html">
+ <span class="dropdown-text">Hands-on Exercise 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex03/Hands-on_Ex03.html">
+ <span class="dropdown-text">Hands-on Exercise 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04_PartA.html">
+ <span class="dropdown-text">Hands-on Exercise 4 Part A</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04_PartB.html">
+ <span class="dropdown-text">Hands-on Exercise 4 Part B</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04_PartC.html">
+ <span class="dropdown-text">Hands-on Exercise 4 Part C</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex04/Hands-on_Ex04_PartD.html">
+ <span class="dropdown-text">Hands-on Exercise 4 Part D</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05_PartA.html">
+ <span class="dropdown-text">Hands-on Exercise 5 Part A</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05_PartB.html">
+ <span class="dropdown-text">Hands-on Exercise 5 Part B</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05_PartC.html">
+ <span class="dropdown-text">Hands-on Exercise 5 Part C</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05_PartD.html">
+ <span class="dropdown-text">Hands-on Exercise 5 Part D</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex05/Hands-on_Ex05_PartE.html">
+ <span class="dropdown-text">Hands-on Exercise 5 Part E</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex07/Hands-on_Ex07.html">
+ <span class="dropdown-text">Hands-on Exercise 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08_PartA.html">
+ <span class="dropdown-text">Hands-on Exercise 8 Part A</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08_PartB.html">
+ <span class="dropdown-text">Hands-on Exercise 8 Part B</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex08/Hands-on_Ex08_PartC.html">
+ <span class="dropdown-text">Hands-on Exercise 8 Part C</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex09/Hands-on_Ex09.html">
+ <span class="dropdown-text">Hands-on Exercise 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Hands-on_Ex/Hands-on_Ex10/Hands-on_Ex10.html">
+ <span class="dropdown-text">Hands-on Exercise 10</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-take-home-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Take-Home Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-take-home-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex1/Take-home_Ex1.html">
+ <span class="dropdown-text">Take-home Exercise 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex2/Take-home_Ex2.html">
+ <span class="dropdown-text">Take-home Exercise 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex3/Take-home_Ex3_Part1.html">
+ <span class="dropdown-text">Take-home Exercise 3 Part 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../Take-home_Ex/Take-home_Ex3/Take-home_Ex3_Part2.html">
+ <span class="dropdown-text">Take-home Exercise 3 Part 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-in-class-exercise" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">In-Class Exercise</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercise">    
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-class_Ex04/In-class_Ex04.html">
+ <span class="dropdown-text">In-Class Exercise 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-class_Ex05/In-class_Ex05.html">
+ <span class="dropdown-text">In-Class Exercise 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../In-Class_Ex/In-class_Ex07/In-class_Ex07.html">
+ <span class="dropdown-text">In-Class Exercise 7</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">1.Overview</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">2.Data Preparation</a>
+  <ul class="collapse">
+  <li><a href="#install-and-launch-r-packages" id="toc-install-and-launch-r-packages" class="nav-link" data-scroll-target="#install-and-launch-r-packages">2.1 Install and launch R packages</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">2.2 Import Data</a></li>
+  </ul></li>
+  <li><a href="#plotting-scatter-plot-for-africa-region" id="toc-plotting-scatter-plot-for-africa-region" class="nav-link" data-scroll-target="#plotting-scatter-plot-for-africa-region">3.Plotting Scatter Plot for Africa Region</a></li>
+  <li><a href="#use-expand-to-assist-in-determine-the-visualisation-for-shiny" id="toc-use-expand-to-assist-in-determine-the-visualisation-for-shiny" class="nav-link" data-scroll-target="#use-expand-to-assist-in-determine-the-visualisation-for-shiny">4 Use ExPanD to assist in determine the visualisation for shiny</a>
+  <ul class="collapse">
+  <li><a href="#overview-of-the-expand-package" id="toc-overview-of-the-expand-package" class="nav-link" data-scroll-target="#overview-of-the-expand-package">4.1 Overview of the ExPanD package</a></li>
+  <li><a href="#using-expand" id="toc-using-expand" class="nav-link" data-scroll-target="#using-expand">4.2 Using <code>ExPanD()</code></a></li>
+  </ul></li>
+  <li><a href="#testing-plots-for-visualization" id="toc-testing-plots-for-visualization" class="nav-link" data-scroll-target="#testing-plots-for-visualization">5. Testing plots for visualization</a>
+  <ul class="collapse">
+  <li><a href="#plot-with-ggplot2" id="toc-plot-with-ggplot2" class="nav-link" data-scroll-target="#plot-with-ggplot2">5.1 plot with ggplot2</a></li>
+  <li><a href="#interactive-plot" id="toc-interactive-plot" class="nav-link" data-scroll-target="#interactive-plot">5.2 Interactive Plot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Take-home Exercise 3 Part 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lai Meihao </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 27, 2025</p>
+    </div>
+  </div>
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">March 31, 2025</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>1.Overview</h1>
+<p>This part focus on creating visualization for the <code>combined_complete_data.csv</code>.</p>
+</section>
+<section id="data-preparation" class="level1">
+<h1>2.Data Preparation</h1>
+<section id="install-and-launch-r-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-and-launch-r-packages">2.1 Install and launch R packages</h2>
+<p>The project uses <code>p_load()</code> of pacman package to check if the R package are installed in the computer.</p>
+<p>The following code chunk is used to install and launch the R packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(tidyverse, ggplot2, plm,ExPanDaR,lubridate, ggthemes, plotly,purrr,shiny)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-data" class="level2">
+<h2 class="anchored" data-anchor-id="import-data">2.2 Import Data</h2>
+<p>The below code chunk use <code>read_csv()</code> to read the csv file into R as a data frame</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"combined_complete_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="plotting-scatter-plot-for-africa-region" class="level1">
+<h1>3.Plotting Scatter Plot for Africa Region</h1>
+<p>The below code chunk plot a scatter for Africa between <code>BasicSanitationService</code> and <code>DiarrheaRate</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>africa_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"African Region"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>africa_scatter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(africa_data, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">aes</span>(<span class="at">x =</span> BasicSanitationServices, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y =</span> DiarrheaRate, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">color =</span> DataType)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> PopulationDensity), </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>, </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Diarrhea Rate vs Basic Sanitation Services in African Region"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Basic Sanitation Services (% of population)"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Diarrhea Rate (%)"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Data Type"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(africa_scatter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>regression_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(DiarrheaRate <span class="sc">~</span> BasicSanitationServices, <span class="at">data =</span> africa_data)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Regression Summary:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Regression Summary:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = DiarrheaRate ~ BasicSanitationServices, data = africa_data)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.1528 -0.5384 -0.1055  0.5280  1.1540 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)             33.52665    0.70521   47.54   &lt;2e-16 ***
+BasicSanitationServices -0.37663    0.01919  -19.62   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6769 on 29 degrees of freedom
+Multiple R-squared:   0.93, Adjusted R-squared:  0.9275 
+F-statistic:   385 on 1 and 29 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Correlation Details:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Correlation Details:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cor_results <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(africa_data<span class="sc">$</span>BasicSanitationServices, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                        africa_data<span class="sc">$</span>DiarrheaRate)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cor_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  africa_data$BasicSanitationServices and africa_data$DiarrheaRate
+t = -19.621, df = 29, p-value &lt; 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9828397 -0.9266356
+sample estimates:
+       cor 
+-0.9643403 </code></pre>
+</div>
+</div>
+</section>
+<section id="use-expand-to-assist-in-determine-the-visualisation-for-shiny" class="level1">
+<h1>4 Use ExPanD to assist in determine the visualisation for shiny</h1>
+<section id="overview-of-the-expand-package" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-the-expand-package">4.1 Overview of the ExPanD package</h2>
+<p>The <code>ExPanDaR</code> package is designed for exploratory panel data analysis in R. It provides a set of tools that allow users to conduct various analyses on panel data, which involves data collected across time and across different subjects (such as countries, individuals, etc.).</p>
+<p>The package aims to simplify and streamline tasks like:</p>
+<ol type="1">
+<li><p><strong>Data exploration</strong>: Summarizing panel data, understanding the structure, and generating basic descriptive statistics.</p></li>
+<li><p><strong>Visualization</strong>: Creating plots and charts to visualize trends, distributions, and relationships in panel data.</p></li>
+<li><p><strong>Modeling</strong>: Performing regression analyses on panel data, including fixed-effects and random-effects models.</p></li>
+<li><p><strong>Diagnostics</strong>: Conducting diagnostic checks to assess the assumptions of panel data models.</p></li>
+</ol>
+</section>
+<section id="using-expand" class="level2">
+<h2 class="anchored" data-anchor-id="using-expand">4.2 Using <code>ExPanD()</code></h2>
+<p>The below code chunk use the <code>ExpanD()</code> function, and set <code>cs_id="Region"</code>, the <code>ts_id="Year"</code>. The cs_id refers to the cross-sectional identifier (the entity being observed across time). In this case, it’s set to “Region”, indicating that each region represents an individual subject (or entity) observed over multiple time periods.The <code>ts_id</code> refers to the time-series identifier, specifying that the “Year” column contains the time periods in which the data was collected.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove the '#' for the line below for using ExPanD</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ExPanD(df = data, cs_id = "Region", ts_id = "Year")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After review the output, it was decide to proceed with time trend and bar chart with multiple selection for variables.</p>
+</section>
+</section>
+<section id="testing-plots-for-visualization" class="level1">
+<h1>5. Testing plots for visualization</h1>
+<section id="plot-with-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="plot-with-ggplot2">5.1 plot with ggplot2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(data<span class="sc">$</span>Year)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>DataSource <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(data<span class="sc">$</span>Year <span class="sc">&gt;</span> <span class="dv">2020</span>, <span class="st">"Forecast"</span>, <span class="st">"Actual"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> <span class="cf">function</span>(variableType, washVarsSelect, diseaseSelect, regionSelect, dataSourceSelect, yearSelect) {</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  data_filtered <span class="ot">&lt;-</span> data</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  data_filtered <span class="ot">&lt;-</span> data_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Year <span class="sc">&gt;=</span> yearSelect[<span class="dv">1</span>] <span class="sc">&amp;</span> Year <span class="sc">&lt;=</span> yearSelect[<span class="dv">2</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Region <span class="sc">%in%</span> regionSelect)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  data_filtered <span class="ot">&lt;-</span> data_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(DataSource <span class="sc">%in%</span> dataSourceSelect)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  selected_vars <span class="ot">&lt;-</span> <span class="cf">if</span> (variableType <span class="sc">==</span> <span class="st">"WASH Variables"</span>) {</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    washVarsSelect</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (variableType <span class="sc">==</span> <span class="st">"Disease Rates"</span>) {</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    diseaseSelect</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {  <span class="co"># Compare Both</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(washVarsSelect, diseaseSelect)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  plot_data <span class="ot">&lt;-</span> data_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(Region, Year, DataSource, <span class="fu">all_of</span>(selected_vars)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">all_of</span>(selected_vars),</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">names_to =</span> <span class="st">"Variable"</span>,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">values_to =</span> <span class="st">"Value"</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot_data)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#line plot</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>line_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value, <span class="at">color =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Line Plot of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Value"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#box plot</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>box_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Variable, <span class="at">y =</span> Value, <span class="at">fill =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Box Plot of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Variable"</span>, <span class="at">y =</span> <span class="st">"Value"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#histogram</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>histogram_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">fill =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Value"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#facet grid</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>facet_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value, <span class="at">color =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>Region) <span class="sc">+</span>  <span class="co"># Facet by region or other categories</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Facet Grid of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Value"</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Time Series Plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>time_series_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value, <span class="at">color =</span> Variable, <span class="at">linetype =</span> DataSource)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">interaction</span>(Variable, Region)) <span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time Series of Selected Variables"</span>, <span class="at">y =</span> <span class="st">"Value"</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"solid"</span>, <span class="st">"dashed"</span>))</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter Plot</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>scatter_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value, <span class="at">color =</span> Variable, <span class="at">shape =</span> DataSource)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter Plot of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Value"</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>heatmap_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Variable, <span class="at">fill =</span> Value)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heatmap of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Variable"</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>bar_chart <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Value, <span class="at">fill =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Chart of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Value"</span>) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>density_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot_data) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">fill =</span> Variable)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density Plot of Selected Variables"</span>, <span class="at">x =</span> <span class="st">"Value"</span>, <span class="at">y =</span> <span class="st">"Density"</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>generate_plots <span class="ot">&lt;-</span> <span class="cf">function</span>(variableType, washVarsSelect, diseaseSelect, regionSelect, dataSourceSelect, yearSelect) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  plot_data <span class="ot">&lt;-</span> <span class="fu">filtered_data</span>(variableType, washVarsSelect, diseaseSelect, regionSelect, dataSourceSelect, yearSelect)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Time Series Plot</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">time_series_plot</span>(plot_data))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scatter Plot</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">scatter_plot</span>(plot_data))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Bar Chart</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">bar_chart</span>(plot_data))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Heatmap</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">heatmap_plot</span>(plot_data))</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#box plot</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">box_plot</span>(plot_data))</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">#histogram</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">histogram_plot</span>(plot_data))</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">#facet_plot</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">facet_plot</span>(plot_data))</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">#density plot</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">density_plot</span>(plot_data))</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">generate_plots</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">variableType =</span> <span class="st">"Compare Both"</span>, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">washVarsSelect =</span> <span class="fu">c</span>(<span class="st">"BasicWaterServices"</span>, <span class="st">"WaterStress"</span>,<span class="st">"OpenDefecation"</span>), </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">diseaseSelect =</span> <span class="fu">c</span>(<span class="st">"TyphoidRate"</span>, <span class="st">"DiarrheaRate"</span>), </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">regionSelect =</span> <span class="fu">c</span>(<span class="st">"African Region"</span>), </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataSourceSelect =</span> <span class="fu">c</span>(<span class="st">"Actual"</span>, <span class="st">"Forecast"</span>), </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">yearSelect =</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2030</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Take-home_Ex3_Part2_files/figure-html/unnamed-chunk-16-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interactive-plot" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-plot">5.2 Interactive Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>interactive_plot <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(data, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> <span class="sc">~</span>Year, </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> <span class="sc">~</span>TyphoidRate, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color =</span> <span class="sc">~</span>Region,   </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">type =</span> <span class="st">'scatter'</span>, </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">mode =</span> <span class="st">'lines+markers'</span>,  </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">hoverinfo =</span> <span class="st">'text'</span>, </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">'Year: '</span>, Year, <span class="st">'&lt;br&gt;Typhoid Rate: '</span>, <span class="fu">round</span>(TyphoidRate, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">title =</span> <span class="st">"Interactive Time Series of Typhoid Rate by Region"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Year"</span>),</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Typhoid Rate"</span>))</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>interactive_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-d8c50089272641209fde" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-d8c50089272641209fde">{"x":{"visdat":{"7c3c634b906":["function () ","plotlyVisDat"]},"cur_data":"7c3c634b906","attrs":{"7c3c634b906":{"x":{},"y":{},"mode":"lines+markers","hoverinfo":"text","text":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Interactive Time Series of Typhoid Rate by Region","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Typhoid Rate"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.02,0.02,0.02,0.02,0.02,0.021010486038386299,0.022476105958460699,0.024315083027783901,0.026459170526871401,0.028852419445156902,0.031449367947848902,0.034213227006120298,0.0371142681891427,0.040128464594288697],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.04","Year:  2001 <br>Typhoid Rate:  0.04","Year:  2002 <br>Typhoid Rate:  0.04","Year:  2003 <br>Typhoid Rate:  0.04","Year:  2004 <br>Typhoid Rate:  0.04","Year:  2005 <br>Typhoid Rate:  0.04","Year:  2006 <br>Typhoid Rate:  0.04","Year:  2007 <br>Typhoid Rate:  0.04","Year:  2008 <br>Typhoid Rate:  0.03","Year:  2009 <br>Typhoid Rate:  0.03","Year:  2010 <br>Typhoid Rate:  0.03","Year:  2011 <br>Typhoid Rate:  0.03","Year:  2012 <br>Typhoid Rate:  0.03","Year:  2013 <br>Typhoid Rate:  0.03","Year:  2014 <br>Typhoid Rate:  0.03","Year:  2015 <br>Typhoid Rate:  0.03","Year:  2016 <br>Typhoid Rate:  0.03","Year:  2017 <br>Typhoid Rate:  0.02","Year:  2018 <br>Typhoid Rate:  0.02","Year:  2019 <br>Typhoid Rate:  0.02","Year:  2020 <br>Typhoid Rate:  0.02","Year:  2021 <br>Typhoid Rate:  0.02","Year:  2022 <br>Typhoid Rate:  0.02","Year:  2023 <br>Typhoid Rate:  0.02","Year:  2024 <br>Typhoid Rate:  0.02","Year:  2025 <br>Typhoid Rate:  0.03","Year:  2026 <br>Typhoid Rate:  0.03","Year:  2027 <br>Typhoid Rate:  0.03","Year:  2028 <br>Typhoid Rate:  0.03","Year:  2029 <br>Typhoid Rate:  0.04","Year:  2030 <br>Typhoid Rate:  0.04"],"type":"scatter","name":"African Region","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.059999999999999998,0.059999999999999998,0.050000000000000003,0.050000000000000003,0.050000000000000003,0.050000000000000003,0.050000000000000003,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.02,0.020386625165075199,0.020530954020047901,0.0208582358364089,0.021411129743926401,0.0221327555766095,0.023018894437897699,0.024031486422026301,0.025154323270655098,0.0263610510239457],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.06","Year:  2001 <br>Typhoid Rate:  0.06","Year:  2002 <br>Typhoid Rate:  0.05","Year:  2003 <br>Typhoid Rate:  0.05","Year:  2004 <br>Typhoid Rate:  0.05","Year:  2005 <br>Typhoid Rate:  0.05","Year:  2006 <br>Typhoid Rate:  0.05","Year:  2007 <br>Typhoid Rate:  0.04","Year:  2008 <br>Typhoid Rate:  0.04","Year:  2009 <br>Typhoid Rate:  0.04","Year:  2010 <br>Typhoid Rate:  0.04","Year:  2011 <br>Typhoid Rate:  0.04","Year:  2012 <br>Typhoid Rate:  0.04","Year:  2013 <br>Typhoid Rate:  0.04","Year:  2014 <br>Typhoid Rate:  0.03","Year:  2015 <br>Typhoid Rate:  0.03","Year:  2016 <br>Typhoid Rate:  0.03","Year:  2017 <br>Typhoid Rate:  0.03","Year:  2018 <br>Typhoid Rate:  0.03","Year:  2019 <br>Typhoid Rate:  0.03","Year:  2020 <br>Typhoid Rate:  0.03","Year:  2021 <br>Typhoid Rate:  0.02","Year:  2022 <br>Typhoid Rate:  0.02","Year:  2023 <br>Typhoid Rate:  0.02","Year:  2024 <br>Typhoid Rate:  0.02","Year:  2025 <br>Typhoid Rate:  0.02","Year:  2026 <br>Typhoid Rate:  0.02","Year:  2027 <br>Typhoid Rate:  0.02","Year:  2028 <br>Typhoid Rate:  0.02","Year:  2029 <br>Typhoid Rate:  0.03","Year:  2030 <br>Typhoid Rate:  0.03"],"type":"scatter","name":"Eastern Mediterranean Region","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3.5346152131381098e-05,6.6550976705585595e-05,5.6013959773226302e-05,0,0,0,0,0,0],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0","Year:  2001 <br>Typhoid Rate:  0","Year:  2002 <br>Typhoid Rate:  0","Year:  2003 <br>Typhoid Rate:  0","Year:  2004 <br>Typhoid Rate:  0","Year:  2005 <br>Typhoid Rate:  0","Year:  2006 <br>Typhoid Rate:  0","Year:  2007 <br>Typhoid Rate:  0","Year:  2008 <br>Typhoid Rate:  0","Year:  2009 <br>Typhoid Rate:  0","Year:  2010 <br>Typhoid Rate:  0","Year:  2011 <br>Typhoid Rate:  0","Year:  2012 <br>Typhoid Rate:  0","Year:  2013 <br>Typhoid Rate:  0","Year:  2014 <br>Typhoid Rate:  0","Year:  2015 <br>Typhoid Rate:  0","Year:  2016 <br>Typhoid Rate:  0","Year:  2017 <br>Typhoid Rate:  0","Year:  2018 <br>Typhoid Rate:  0","Year:  2019 <br>Typhoid Rate:  0","Year:  2020 <br>Typhoid Rate:  0","Year:  2021 <br>Typhoid Rate:  0","Year:  2022 <br>Typhoid Rate:  0","Year:  2023 <br>Typhoid Rate:  0","Year:  2024 <br>Typhoid Rate:  0","Year:  2025 <br>Typhoid Rate:  0","Year:  2026 <br>Typhoid Rate:  0","Year:  2027 <br>Typhoid Rate:  0","Year:  2028 <br>Typhoid Rate:  0","Year:  2029 <br>Typhoid Rate:  0","Year:  2030 <br>Typhoid Rate:  0"],"type":"scatter","name":"European Region","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0","Year:  2001 <br>Typhoid Rate:  0","Year:  2002 <br>Typhoid Rate:  0","Year:  2003 <br>Typhoid Rate:  0","Year:  2004 <br>Typhoid Rate:  0","Year:  2005 <br>Typhoid Rate:  0","Year:  2006 <br>Typhoid Rate:  0","Year:  2007 <br>Typhoid Rate:  0","Year:  2008 <br>Typhoid Rate:  0","Year:  2009 <br>Typhoid Rate:  0","Year:  2010 <br>Typhoid Rate:  0","Year:  2011 <br>Typhoid Rate:  0","Year:  2012 <br>Typhoid Rate:  0","Year:  2013 <br>Typhoid Rate:  0","Year:  2014 <br>Typhoid Rate:  0","Year:  2015 <br>Typhoid Rate:  0","Year:  2016 <br>Typhoid Rate:  0","Year:  2017 <br>Typhoid Rate:  0","Year:  2018 <br>Typhoid Rate:  0","Year:  2019 <br>Typhoid Rate:  0","Year:  2020 <br>Typhoid Rate:  0","Year:  2021 <br>Typhoid Rate:  0","Year:  2022 <br>Typhoid Rate:  0","Year:  2023 <br>Typhoid Rate:  0","Year:  2024 <br>Typhoid Rate:  0","Year:  2025 <br>Typhoid Rate:  0","Year:  2026 <br>Typhoid Rate:  0","Year:  2027 <br>Typhoid Rate:  0","Year:  2028 <br>Typhoid Rate:  0","Year:  2029 <br>Typhoid Rate:  0","Year:  2030 <br>Typhoid Rate:  0"],"type":"scatter","name":"Region of the Americas","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"textfont":{"color":"rgba(231,138,195,1)"},"error_y":{"color":"rgba(231,138,195,1)"},"error_x":{"color":"rgba(231,138,195,1)"},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.22,0.22,0.20999999999999999,0.20000000000000001,0.19,0.17999999999999999,0.17999999999999999,0.17000000000000001,0.16,0.16,0.14999999999999999,0.14000000000000001,0.13,0.12,0.10000000000000001,0.10000000000000001,0.089999999999999997,0.080000000000000002,0.080000000000000002,0.070000000000000007,0.070000000000000007,0.059999999999999998,0.0550318223752971,0.050699554095956501,0.046451397466508497,0.042246802015020402,0.038064766770443702,0.033894415391173799,0.029730115051641502,0.025568948527926402,0.0214094049982755],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.22","Year:  2001 <br>Typhoid Rate:  0.22","Year:  2002 <br>Typhoid Rate:  0.21","Year:  2003 <br>Typhoid Rate:  0.2","Year:  2004 <br>Typhoid Rate:  0.19","Year:  2005 <br>Typhoid Rate:  0.18","Year:  2006 <br>Typhoid Rate:  0.18","Year:  2007 <br>Typhoid Rate:  0.17","Year:  2008 <br>Typhoid Rate:  0.16","Year:  2009 <br>Typhoid Rate:  0.16","Year:  2010 <br>Typhoid Rate:  0.15","Year:  2011 <br>Typhoid Rate:  0.14","Year:  2012 <br>Typhoid Rate:  0.13","Year:  2013 <br>Typhoid Rate:  0.12","Year:  2014 <br>Typhoid Rate:  0.1","Year:  2015 <br>Typhoid Rate:  0.1","Year:  2016 <br>Typhoid Rate:  0.09","Year:  2017 <br>Typhoid Rate:  0.08","Year:  2018 <br>Typhoid Rate:  0.08","Year:  2019 <br>Typhoid Rate:  0.07","Year:  2020 <br>Typhoid Rate:  0.07","Year:  2021 <br>Typhoid Rate:  0.06","Year:  2022 <br>Typhoid Rate:  0.06","Year:  2023 <br>Typhoid Rate:  0.05","Year:  2024 <br>Typhoid Rate:  0.05","Year:  2025 <br>Typhoid Rate:  0.04","Year:  2026 <br>Typhoid Rate:  0.04","Year:  2027 <br>Typhoid Rate:  0.03","Year:  2028 <br>Typhoid Rate:  0.03","Year:  2029 <br>Typhoid Rate:  0.03","Year:  2030 <br>Typhoid Rate:  0.02"],"type":"scatter","name":"South-East Asia Region","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"textfont":{"color":"rgba(166,216,84,1)"},"error_y":{"color":"rgba(166,216,84,1)"},"error_x":{"color":"rgba(166,216,84,1)"},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.0097669068593474895,0.010580209040295101,0.011449319943940399,0.012357258419408899,0.0132952430995033,0.014257813467813799,0.0152410307829611,0.0162417866819984,0.0172575145292857],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.01","Year:  2001 <br>Typhoid Rate:  0.01","Year:  2002 <br>Typhoid Rate:  0.01","Year:  2003 <br>Typhoid Rate:  0.01","Year:  2004 <br>Typhoid Rate:  0.01","Year:  2005 <br>Typhoid Rate:  0.01","Year:  2006 <br>Typhoid Rate:  0.01","Year:  2007 <br>Typhoid Rate:  0.01","Year:  2008 <br>Typhoid Rate:  0.01","Year:  2009 <br>Typhoid Rate:  0.01","Year:  2010 <br>Typhoid Rate:  0.01","Year:  2011 <br>Typhoid Rate:  0.01","Year:  2012 <br>Typhoid Rate:  0.01","Year:  2013 <br>Typhoid Rate:  0.01","Year:  2014 <br>Typhoid Rate:  0.01","Year:  2015 <br>Typhoid Rate:  0.01","Year:  2016 <br>Typhoid Rate:  0.01","Year:  2017 <br>Typhoid Rate:  0.01","Year:  2018 <br>Typhoid Rate:  0.01","Year:  2019 <br>Typhoid Rate:  0.01","Year:  2020 <br>Typhoid Rate:  0.01","Year:  2021 <br>Typhoid Rate:  0.01","Year:  2022 <br>Typhoid Rate:  0.01","Year:  2023 <br>Typhoid Rate:  0.01","Year:  2024 <br>Typhoid Rate:  0.01","Year:  2025 <br>Typhoid Rate:  0.01","Year:  2026 <br>Typhoid Rate:  0.01","Year:  2027 <br>Typhoid Rate:  0.01","Year:  2028 <br>Typhoid Rate:  0.02","Year:  2029 <br>Typhoid Rate:  0.02","Year:  2030 <br>Typhoid Rate:  0.02"],"type":"scatter","name":"Western Pacific Region","marker":{"color":"rgba(255,217,47,1)","line":{"color":"rgba(255,217,47,1)"}},"textfont":{"color":"rgba(255,217,47,1)"},"error_y":{"color":"rgba(255,217,47,1)"},"error_x":{"color":"rgba(255,217,47,1)"},"line":{"color":"rgba(255,217,47,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>interactive_plot <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(data, </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> <span class="sc">~</span>Year, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> <span class="sc">~</span>TyphoidRate, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color =</span> <span class="sc">~</span>Region,   </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">type =</span> <span class="st">'scatter'</span>, </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">mode =</span> <span class="st">'lines+markers'</span>, </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">hoverinfo =</span> <span class="st">'text'</span>, </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">'Year: '</span>, Year, <span class="st">'&lt;br&gt;Typhoid Rate: '</span>, <span class="fu">round</span>(TyphoidRate, <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">title =</span> <span class="st">"Interactive Time Series of Typhoid Rate by Region"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Year"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rangeslider =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"date"</span>),  <span class="co"># Add range slider</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"linear"</span>),  <span class="co"># Linear scale for year axis</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Typhoid Rate"</span>),</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">dragmode =</span> <span class="st">"zoom"</span>)  </span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>interactive_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-11fd135cd9adf55d4e66" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-11fd135cd9adf55d4e66">{"x":{"visdat":{"7c3c17df5590":["function () ","plotlyVisDat"]},"cur_data":"7c3c17df5590","attrs":{"7c3c17df5590":{"x":{},"y":{},"mode":"lines+markers","hoverinfo":"text","text":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Interactive Time Series of Typhoid Rate by Region","xaxis":{"domain":[0,1],"automargin":true,"title":"Year","rangeslider":{"type":"date"},"type":"linear"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Typhoid Rate"},"dragmode":"zoom","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.02,0.02,0.02,0.02,0.02,0.021010486038386299,0.022476105958460699,0.024315083027783901,0.026459170526871401,0.028852419445156902,0.031449367947848902,0.034213227006120298,0.0371142681891427,0.040128464594288697],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.04","Year:  2001 <br>Typhoid Rate:  0.04","Year:  2002 <br>Typhoid Rate:  0.04","Year:  2003 <br>Typhoid Rate:  0.04","Year:  2004 <br>Typhoid Rate:  0.04","Year:  2005 <br>Typhoid Rate:  0.04","Year:  2006 <br>Typhoid Rate:  0.04","Year:  2007 <br>Typhoid Rate:  0.04","Year:  2008 <br>Typhoid Rate:  0.03","Year:  2009 <br>Typhoid Rate:  0.03","Year:  2010 <br>Typhoid Rate:  0.03","Year:  2011 <br>Typhoid Rate:  0.03","Year:  2012 <br>Typhoid Rate:  0.03","Year:  2013 <br>Typhoid Rate:  0.03","Year:  2014 <br>Typhoid Rate:  0.03","Year:  2015 <br>Typhoid Rate:  0.03","Year:  2016 <br>Typhoid Rate:  0.03","Year:  2017 <br>Typhoid Rate:  0.02","Year:  2018 <br>Typhoid Rate:  0.02","Year:  2019 <br>Typhoid Rate:  0.02","Year:  2020 <br>Typhoid Rate:  0.02","Year:  2021 <br>Typhoid Rate:  0.02","Year:  2022 <br>Typhoid Rate:  0.02","Year:  2023 <br>Typhoid Rate:  0.02","Year:  2024 <br>Typhoid Rate:  0.02","Year:  2025 <br>Typhoid Rate:  0.03","Year:  2026 <br>Typhoid Rate:  0.03","Year:  2027 <br>Typhoid Rate:  0.03","Year:  2028 <br>Typhoid Rate:  0.03","Year:  2029 <br>Typhoid Rate:  0.04","Year:  2030 <br>Typhoid Rate:  0.04"],"type":"scatter","name":"African Region","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.059999999999999998,0.059999999999999998,0.050000000000000003,0.050000000000000003,0.050000000000000003,0.050000000000000003,0.050000000000000003,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.040000000000000001,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.029999999999999999,0.02,0.020386625165075199,0.020530954020047901,0.0208582358364089,0.021411129743926401,0.0221327555766095,0.023018894437897699,0.024031486422026301,0.025154323270655098,0.0263610510239457],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.06","Year:  2001 <br>Typhoid Rate:  0.06","Year:  2002 <br>Typhoid Rate:  0.05","Year:  2003 <br>Typhoid Rate:  0.05","Year:  2004 <br>Typhoid Rate:  0.05","Year:  2005 <br>Typhoid Rate:  0.05","Year:  2006 <br>Typhoid Rate:  0.05","Year:  2007 <br>Typhoid Rate:  0.04","Year:  2008 <br>Typhoid Rate:  0.04","Year:  2009 <br>Typhoid Rate:  0.04","Year:  2010 <br>Typhoid Rate:  0.04","Year:  2011 <br>Typhoid Rate:  0.04","Year:  2012 <br>Typhoid Rate:  0.04","Year:  2013 <br>Typhoid Rate:  0.04","Year:  2014 <br>Typhoid Rate:  0.03","Year:  2015 <br>Typhoid Rate:  0.03","Year:  2016 <br>Typhoid Rate:  0.03","Year:  2017 <br>Typhoid Rate:  0.03","Year:  2018 <br>Typhoid Rate:  0.03","Year:  2019 <br>Typhoid Rate:  0.03","Year:  2020 <br>Typhoid Rate:  0.03","Year:  2021 <br>Typhoid Rate:  0.02","Year:  2022 <br>Typhoid Rate:  0.02","Year:  2023 <br>Typhoid Rate:  0.02","Year:  2024 <br>Typhoid Rate:  0.02","Year:  2025 <br>Typhoid Rate:  0.02","Year:  2026 <br>Typhoid Rate:  0.02","Year:  2027 <br>Typhoid Rate:  0.02","Year:  2028 <br>Typhoid Rate:  0.02","Year:  2029 <br>Typhoid Rate:  0.03","Year:  2030 <br>Typhoid Rate:  0.03"],"type":"scatter","name":"Eastern Mediterranean Region","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3.5346152131381098e-05,6.6550976705585595e-05,5.6013959773226302e-05,0,0,0,0,0,0],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0","Year:  2001 <br>Typhoid Rate:  0","Year:  2002 <br>Typhoid Rate:  0","Year:  2003 <br>Typhoid Rate:  0","Year:  2004 <br>Typhoid Rate:  0","Year:  2005 <br>Typhoid Rate:  0","Year:  2006 <br>Typhoid Rate:  0","Year:  2007 <br>Typhoid Rate:  0","Year:  2008 <br>Typhoid Rate:  0","Year:  2009 <br>Typhoid Rate:  0","Year:  2010 <br>Typhoid Rate:  0","Year:  2011 <br>Typhoid Rate:  0","Year:  2012 <br>Typhoid Rate:  0","Year:  2013 <br>Typhoid Rate:  0","Year:  2014 <br>Typhoid Rate:  0","Year:  2015 <br>Typhoid Rate:  0","Year:  2016 <br>Typhoid Rate:  0","Year:  2017 <br>Typhoid Rate:  0","Year:  2018 <br>Typhoid Rate:  0","Year:  2019 <br>Typhoid Rate:  0","Year:  2020 <br>Typhoid Rate:  0","Year:  2021 <br>Typhoid Rate:  0","Year:  2022 <br>Typhoid Rate:  0","Year:  2023 <br>Typhoid Rate:  0","Year:  2024 <br>Typhoid Rate:  0","Year:  2025 <br>Typhoid Rate:  0","Year:  2026 <br>Typhoid Rate:  0","Year:  2027 <br>Typhoid Rate:  0","Year:  2028 <br>Typhoid Rate:  0","Year:  2029 <br>Typhoid Rate:  0","Year:  2030 <br>Typhoid Rate:  0"],"type":"scatter","name":"European Region","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0","Year:  2001 <br>Typhoid Rate:  0","Year:  2002 <br>Typhoid Rate:  0","Year:  2003 <br>Typhoid Rate:  0","Year:  2004 <br>Typhoid Rate:  0","Year:  2005 <br>Typhoid Rate:  0","Year:  2006 <br>Typhoid Rate:  0","Year:  2007 <br>Typhoid Rate:  0","Year:  2008 <br>Typhoid Rate:  0","Year:  2009 <br>Typhoid Rate:  0","Year:  2010 <br>Typhoid Rate:  0","Year:  2011 <br>Typhoid Rate:  0","Year:  2012 <br>Typhoid Rate:  0","Year:  2013 <br>Typhoid Rate:  0","Year:  2014 <br>Typhoid Rate:  0","Year:  2015 <br>Typhoid Rate:  0","Year:  2016 <br>Typhoid Rate:  0","Year:  2017 <br>Typhoid Rate:  0","Year:  2018 <br>Typhoid Rate:  0","Year:  2019 <br>Typhoid Rate:  0","Year:  2020 <br>Typhoid Rate:  0","Year:  2021 <br>Typhoid Rate:  0","Year:  2022 <br>Typhoid Rate:  0","Year:  2023 <br>Typhoid Rate:  0","Year:  2024 <br>Typhoid Rate:  0","Year:  2025 <br>Typhoid Rate:  0","Year:  2026 <br>Typhoid Rate:  0","Year:  2027 <br>Typhoid Rate:  0","Year:  2028 <br>Typhoid Rate:  0","Year:  2029 <br>Typhoid Rate:  0","Year:  2030 <br>Typhoid Rate:  0"],"type":"scatter","name":"Region of the Americas","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"textfont":{"color":"rgba(231,138,195,1)"},"error_y":{"color":"rgba(231,138,195,1)"},"error_x":{"color":"rgba(231,138,195,1)"},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.22,0.22,0.20999999999999999,0.20000000000000001,0.19,0.17999999999999999,0.17999999999999999,0.17000000000000001,0.16,0.16,0.14999999999999999,0.14000000000000001,0.13,0.12,0.10000000000000001,0.10000000000000001,0.089999999999999997,0.080000000000000002,0.080000000000000002,0.070000000000000007,0.070000000000000007,0.059999999999999998,0.0550318223752971,0.050699554095956501,0.046451397466508497,0.042246802015020402,0.038064766770443702,0.033894415391173799,0.029730115051641502,0.025568948527926402,0.0214094049982755],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.22","Year:  2001 <br>Typhoid Rate:  0.22","Year:  2002 <br>Typhoid Rate:  0.21","Year:  2003 <br>Typhoid Rate:  0.2","Year:  2004 <br>Typhoid Rate:  0.19","Year:  2005 <br>Typhoid Rate:  0.18","Year:  2006 <br>Typhoid Rate:  0.18","Year:  2007 <br>Typhoid Rate:  0.17","Year:  2008 <br>Typhoid Rate:  0.16","Year:  2009 <br>Typhoid Rate:  0.16","Year:  2010 <br>Typhoid Rate:  0.15","Year:  2011 <br>Typhoid Rate:  0.14","Year:  2012 <br>Typhoid Rate:  0.13","Year:  2013 <br>Typhoid Rate:  0.12","Year:  2014 <br>Typhoid Rate:  0.1","Year:  2015 <br>Typhoid Rate:  0.1","Year:  2016 <br>Typhoid Rate:  0.09","Year:  2017 <br>Typhoid Rate:  0.08","Year:  2018 <br>Typhoid Rate:  0.08","Year:  2019 <br>Typhoid Rate:  0.07","Year:  2020 <br>Typhoid Rate:  0.07","Year:  2021 <br>Typhoid Rate:  0.06","Year:  2022 <br>Typhoid Rate:  0.06","Year:  2023 <br>Typhoid Rate:  0.05","Year:  2024 <br>Typhoid Rate:  0.05","Year:  2025 <br>Typhoid Rate:  0.04","Year:  2026 <br>Typhoid Rate:  0.04","Year:  2027 <br>Typhoid Rate:  0.03","Year:  2028 <br>Typhoid Rate:  0.03","Year:  2029 <br>Typhoid Rate:  0.03","Year:  2030 <br>Typhoid Rate:  0.02"],"type":"scatter","name":"South-East Asia Region","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"textfont":{"color":"rgba(166,216,84,1)"},"error_y":{"color":"rgba(166,216,84,1)"},"error_x":{"color":"rgba(166,216,84,1)"},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.01,0.0097669068593474895,0.010580209040295101,0.011449319943940399,0.012357258419408899,0.0132952430995033,0.014257813467813799,0.0152410307829611,0.0162417866819984,0.0172575145292857],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br>Typhoid Rate:  0.01","Year:  2001 <br>Typhoid Rate:  0.01","Year:  2002 <br>Typhoid Rate:  0.01","Year:  2003 <br>Typhoid Rate:  0.01","Year:  2004 <br>Typhoid Rate:  0.01","Year:  2005 <br>Typhoid Rate:  0.01","Year:  2006 <br>Typhoid Rate:  0.01","Year:  2007 <br>Typhoid Rate:  0.01","Year:  2008 <br>Typhoid Rate:  0.01","Year:  2009 <br>Typhoid Rate:  0.01","Year:  2010 <br>Typhoid Rate:  0.01","Year:  2011 <br>Typhoid Rate:  0.01","Year:  2012 <br>Typhoid Rate:  0.01","Year:  2013 <br>Typhoid Rate:  0.01","Year:  2014 <br>Typhoid Rate:  0.01","Year:  2015 <br>Typhoid Rate:  0.01","Year:  2016 <br>Typhoid Rate:  0.01","Year:  2017 <br>Typhoid Rate:  0.01","Year:  2018 <br>Typhoid Rate:  0.01","Year:  2019 <br>Typhoid Rate:  0.01","Year:  2020 <br>Typhoid Rate:  0.01","Year:  2021 <br>Typhoid Rate:  0.01","Year:  2022 <br>Typhoid Rate:  0.01","Year:  2023 <br>Typhoid Rate:  0.01","Year:  2024 <br>Typhoid Rate:  0.01","Year:  2025 <br>Typhoid Rate:  0.01","Year:  2026 <br>Typhoid Rate:  0.01","Year:  2027 <br>Typhoid Rate:  0.01","Year:  2028 <br>Typhoid Rate:  0.02","Year:  2029 <br>Typhoid Rate:  0.02","Year:  2030 <br>Typhoid Rate:  0.02"],"type":"scatter","name":"Western Pacific Region","marker":{"color":"rgba(255,217,47,1)","line":{"color":"rgba(255,217,47,1)"}},"textfont":{"color":"rgba(255,217,47,1)"},"error_y":{"color":"rgba(255,217,47,1)"},"error_x":{"color":"rgba(255,217,47,1)"},"line":{"color":"rgba(255,217,47,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wash_indicator <span class="ot">&lt;-</span> <span class="st">"WaterStress"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>interactive_plot <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(data, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">x =</span> <span class="sc">~</span>Year, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> <span class="sc">~</span><span class="fu">get</span>(wash_indicator),  </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color =</span> <span class="sc">~</span>Region,   </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">type =</span> <span class="st">'scatter'</span>, </span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">mode =</span> <span class="st">'lines+markers'</span>,  </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">hoverinfo =</span> <span class="st">'text'</span>, </span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                            <span class="at">text =</span> <span class="sc">~</span><span class="fu">paste</span>(<span class="st">'Year: '</span>, Year, <span class="st">'&lt;br&gt;'</span>, wash_indicator, <span class="st">': '</span>, <span class="fu">round</span>(<span class="fu">get</span>(wash_indicator), <span class="dv">2</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Interactive Time Series of"</span>, wash_indicator, <span class="st">"by Region"</span>),</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Year"</span>,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">rangeslider =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="st">"date"</span>),  </span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>                      <span class="at">type =</span> <span class="st">"linear"</span>),  </span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> wash_indicator),</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">dragmode =</span> <span class="st">"pan"</span>)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>interactive_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-a7e7ddec04f21d295425" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-a7e7ddec04f21d295425">{"x":{"visdat":{"7c3c54a23832":["function () ","plotlyVisDat"]},"cur_data":"7c3c54a23832","attrs":{"7c3c54a23832":{"x":{},"y":{},"mode":"lines+markers","hoverinfo":"text","text":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Interactive Time Series of WaterStress by Region","xaxis":{"domain":[0,1],"automargin":true,"title":"Year","rangeslider":{"type":"date"},"type":"linear"},"yaxis":{"domain":[0,1],"automargin":true,"title":"WaterStress"},"dragmode":"pan","hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[9.7249961192790693,10.072695124116301,10.4342041774884,10.6377752702326,10.770590627116301,10.900407315651201,11.0060801463953,11.074553885674399,11.325059991976699,11.337547330813999,11.4675968210465,11.5101247349302,11.6138817665814,11.710134353767399,12.0320834771628,12.3628064656512,12.676668333093,12.8696058509535,13.1425029552093,13.320040605697701,13.504773063441901,13.548635983441899,13.669075444493901,13.82396666739,13.9943577271533,14.1717221586704,14.3522239079562,14.534137135523901,14.716685386728701,14.899519334869099,15.0824818179712],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br> WaterStress :  9.72","Year:  2001 <br> WaterStress :  10.07","Year:  2002 <br> WaterStress :  10.43","Year:  2003 <br> WaterStress :  10.64","Year:  2004 <br> WaterStress :  10.77","Year:  2005 <br> WaterStress :  10.9","Year:  2006 <br> WaterStress :  11.01","Year:  2007 <br> WaterStress :  11.07","Year:  2008 <br> WaterStress :  11.33","Year:  2009 <br> WaterStress :  11.34","Year:  2010 <br> WaterStress :  11.47","Year:  2011 <br> WaterStress :  11.51","Year:  2012 <br> WaterStress :  11.61","Year:  2013 <br> WaterStress :  11.71","Year:  2014 <br> WaterStress :  12.03","Year:  2015 <br> WaterStress :  12.36","Year:  2016 <br> WaterStress :  12.68","Year:  2017 <br> WaterStress :  12.87","Year:  2018 <br> WaterStress :  13.14","Year:  2019 <br> WaterStress :  13.32","Year:  2020 <br> WaterStress :  13.5","Year:  2021 <br> WaterStress :  13.55","Year:  2022 <br> WaterStress :  13.67","Year:  2023 <br> WaterStress :  13.82","Year:  2024 <br> WaterStress :  13.99","Year:  2025 <br> WaterStress :  14.17","Year:  2026 <br> WaterStress :  14.35","Year:  2027 <br> WaterStress :  14.53","Year:  2028 <br> WaterStress :  14.72","Year:  2029 <br> WaterStress :  14.9","Year:  2030 <br> WaterStress :  15.08"],"type":"scatter","name":"African Region","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[313.24872813014298,317.843334160143,323.52431830109498,327.69483584347603,344.64885773919002,361.85682491347598,369.53542471442898,374.34900272966701,379.06383514585701,383.48448880823798,388.10109175776199,392.07299570823801,397.69536000918998,402.10869055109498,405.651544748238,410.82459342157102,417.91852618919,431.47636042109502,433.74706415014299,433.30836534061899,431.25374006871402,430.39879168061901,434.41978041510498,439.85984918203201,445.29991794896,450.73998671588703,456.18005548281502,461.62012424974301,467.06019301666998,472.50026178359701,477.940330550525],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br> WaterStress :  313.25","Year:  2001 <br> WaterStress :  317.84","Year:  2002 <br> WaterStress :  323.52","Year:  2003 <br> WaterStress :  327.69","Year:  2004 <br> WaterStress :  344.65","Year:  2005 <br> WaterStress :  361.86","Year:  2006 <br> WaterStress :  369.54","Year:  2007 <br> WaterStress :  374.35","Year:  2008 <br> WaterStress :  379.06","Year:  2009 <br> WaterStress :  383.48","Year:  2010 <br> WaterStress :  388.1","Year:  2011 <br> WaterStress :  392.07","Year:  2012 <br> WaterStress :  397.7","Year:  2013 <br> WaterStress :  402.11","Year:  2014 <br> WaterStress :  405.65","Year:  2015 <br> WaterStress :  410.82","Year:  2016 <br> WaterStress :  417.92","Year:  2017 <br> WaterStress :  431.48","Year:  2018 <br> WaterStress :  433.75","Year:  2019 <br> WaterStress :  433.31","Year:  2020 <br> WaterStress :  431.25","Year:  2021 <br> WaterStress :  430.4","Year:  2022 <br> WaterStress :  434.42","Year:  2023 <br> WaterStress :  439.86","Year:  2024 <br> WaterStress :  445.3","Year:  2025 <br> WaterStress :  450.74","Year:  2026 <br> WaterStress :  456.18","Year:  2027 <br> WaterStress :  461.62","Year:  2028 <br> WaterStress :  467.06","Year:  2029 <br> WaterStress :  472.5","Year:  2030 <br> WaterStress :  477.94"],"type":"scatter","name":"Eastern Mediterranean Region","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[32.229368902913002,31.4799084785217,31.336383581478302,31.7618630885435,31.4939924305435,31.583777839217401,31.101776937434799,30.525529074021701,30.831959880826101,30.185517348717401,30.177064768413,30.004931765739101,29.9842098797609,29.439700045326099,29.256267721239102,29.194323134326101,29.084614308587,29.754129567847801,29.779059950847799,29.363458791891301,29.1645244350652,29.247930980456498,29.105957746053502,28.963984511650601,28.822011277247601,28.6800380428446,28.5380648084417,28.396091574038699,28.254118339635699,28.112145105232798,27.970171870829802],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br> WaterStress :  32.23","Year:  2001 <br> WaterStress :  31.48","Year:  2002 <br> WaterStress :  31.34","Year:  2003 <br> WaterStress :  31.76","Year:  2004 <br> WaterStress :  31.49","Year:  2005 <br> WaterStress :  31.58","Year:  2006 <br> WaterStress :  31.1","Year:  2007 <br> WaterStress :  30.53","Year:  2008 <br> WaterStress :  30.83","Year:  2009 <br> WaterStress :  30.19","Year:  2010 <br> WaterStress :  30.18","Year:  2011 <br> WaterStress :  30","Year:  2012 <br> WaterStress :  29.98","Year:  2013 <br> WaterStress :  29.44","Year:  2014 <br> WaterStress :  29.26","Year:  2015 <br> WaterStress :  29.19","Year:  2016 <br> WaterStress :  29.08","Year:  2017 <br> WaterStress :  29.75","Year:  2018 <br> WaterStress :  29.78","Year:  2019 <br> WaterStress :  29.36","Year:  2020 <br> WaterStress :  29.16","Year:  2021 <br> WaterStress :  29.25","Year:  2022 <br> WaterStress :  29.11","Year:  2023 <br> WaterStress :  28.96","Year:  2024 <br> WaterStress :  28.82","Year:  2025 <br> WaterStress :  28.68","Year:  2026 <br> WaterStress :  28.54","Year:  2027 <br> WaterStress :  28.4","Year:  2028 <br> WaterStress :  28.25","Year:  2029 <br> WaterStress :  28.11","Year:  2030 <br> WaterStress :  27.97"],"type":"scatter","name":"European Region","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[13.0880109911111,13.2760507239259,13.493518762111099,13.6932752554444,13.874946684963,13.4965280146296,13.6157410315185,13.716820910999999,13.914907002481501,13.9984292306667,14.1163309485556,14.1588945326667,14.2413965757037,14.266075098185199,14.3128637609259,14.069831280555601,14.275480712666701,14.284231884407401,14.641158272814801,14.648919072074101,14.6182450812222,14.679093849888901,14.7548597003077,14.8306255507265,14.906391401145299,14.9821572515641,15.057923101982899,15.1336889524017,15.209454802820501,15.2852206532392,15.360986503657999],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br> WaterStress :  13.09","Year:  2001 <br> WaterStress :  13.28","Year:  2002 <br> WaterStress :  13.49","Year:  2003 <br> WaterStress :  13.69","Year:  2004 <br> WaterStress :  13.87","Year:  2005 <br> WaterStress :  13.5","Year:  2006 <br> WaterStress :  13.62","Year:  2007 <br> WaterStress :  13.72","Year:  2008 <br> WaterStress :  13.91","Year:  2009 <br> WaterStress :  14","Year:  2010 <br> WaterStress :  14.12","Year:  2011 <br> WaterStress :  14.16","Year:  2012 <br> WaterStress :  14.24","Year:  2013 <br> WaterStress :  14.27","Year:  2014 <br> WaterStress :  14.31","Year:  2015 <br> WaterStress :  14.07","Year:  2016 <br> WaterStress :  14.28","Year:  2017 <br> WaterStress :  14.28","Year:  2018 <br> WaterStress :  14.64","Year:  2019 <br> WaterStress :  14.65","Year:  2020 <br> WaterStress :  14.62","Year:  2021 <br> WaterStress :  14.68","Year:  2022 <br> WaterStress :  14.75","Year:  2023 <br> WaterStress :  14.83","Year:  2024 <br> WaterStress :  14.91","Year:  2025 <br> WaterStress :  14.98","Year:  2026 <br> WaterStress :  15.06","Year:  2027 <br> WaterStress :  15.13","Year:  2028 <br> WaterStress :  15.21","Year:  2029 <br> WaterStress :  15.29","Year:  2030 <br> WaterStress :  15.36"],"type":"scatter","name":"Region of the Americas","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"textfont":{"color":"rgba(231,138,195,1)"},"error_y":{"color":"rgba(231,138,195,1)"},"error_x":{"color":"rgba(231,138,195,1)"},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[32.611372979714297,32.879948974571398,33.1961440167143,33.512339058714304,33.1625164378571,33.052853322714299,33.294217887000002,33.562793335571399,33.776947015571402,33.084071216142902,32.391195417142903,34.276545986999999,34.406794514142902,34.537043042714302,34.667291569857099,34.797540098428598,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402,34.927788625571402],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br> WaterStress :  32.61","Year:  2001 <br> WaterStress :  32.88","Year:  2002 <br> WaterStress :  33.2","Year:  2003 <br> WaterStress :  33.51","Year:  2004 <br> WaterStress :  33.16","Year:  2005 <br> WaterStress :  33.05","Year:  2006 <br> WaterStress :  33.29","Year:  2007 <br> WaterStress :  33.56","Year:  2008 <br> WaterStress :  33.78","Year:  2009 <br> WaterStress :  33.08","Year:  2010 <br> WaterStress :  32.39","Year:  2011 <br> WaterStress :  34.28","Year:  2012 <br> WaterStress :  34.41","Year:  2013 <br> WaterStress :  34.54","Year:  2014 <br> WaterStress :  34.67","Year:  2015 <br> WaterStress :  34.8","Year:  2016 <br> WaterStress :  34.93","Year:  2017 <br> WaterStress :  34.93","Year:  2018 <br> WaterStress :  34.93","Year:  2019 <br> WaterStress :  34.93","Year:  2020 <br> WaterStress :  34.93","Year:  2021 <br> WaterStress :  34.93","Year:  2022 <br> WaterStress :  34.93","Year:  2023 <br> WaterStress :  34.93","Year:  2024 <br> WaterStress :  34.93","Year:  2025 <br> WaterStress :  34.93","Year:  2026 <br> WaterStress :  34.93","Year:  2027 <br> WaterStress :  34.93","Year:  2028 <br> WaterStress :  34.93","Year:  2029 <br> WaterStress :  34.93","Year:  2030 <br> WaterStress :  34.93"],"type":"scatter","name":"South-East Asia Region","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"textfont":{"color":"rgba(166,216,84,1)"},"error_y":{"color":"rgba(166,216,84,1)"},"error_x":{"color":"rgba(166,216,84,1)"},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026,2027,2028,2029,2030],"y":[42.848067229000002,44.173009724166697,45.117575586999997,46.33641809225,47.558490427666698,48.472045793749999,45.938320342416702,43.2967006075,40.7314649941667,38.025514632583302,35.3156384045,32.737667591083301,30.609544306749999,28.503647499749999,26.490282667833299,24.158272087083301,24.337270454666701,24.183367956416699,24.011874622083301,24.047077885083301,23.858175801833301,23.95099177825,24.028013772834701,24.091929360202698,24.144968785247698,24.1889827844137,24.2255071645505,24.255816392742801,24.280968067053902,24.3018398199285,24.319159941947799],"mode":"lines+markers","hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["Year:  2000 <br> WaterStress :  42.85","Year:  2001 <br> WaterStress :  44.17","Year:  2002 <br> WaterStress :  45.12","Year:  2003 <br> WaterStress :  46.34","Year:  2004 <br> WaterStress :  47.56","Year:  2005 <br> WaterStress :  48.47","Year:  2006 <br> WaterStress :  45.94","Year:  2007 <br> WaterStress :  43.3","Year:  2008 <br> WaterStress :  40.73","Year:  2009 <br> WaterStress :  38.03","Year:  2010 <br> WaterStress :  35.32","Year:  2011 <br> WaterStress :  32.74","Year:  2012 <br> WaterStress :  30.61","Year:  2013 <br> WaterStress :  28.5","Year:  2014 <br> WaterStress :  26.49","Year:  2015 <br> WaterStress :  24.16","Year:  2016 <br> WaterStress :  24.34","Year:  2017 <br> WaterStress :  24.18","Year:  2018 <br> WaterStress :  24.01","Year:  2019 <br> WaterStress :  24.05","Year:  2020 <br> WaterStress :  23.86","Year:  2021 <br> WaterStress :  23.95","Year:  2022 <br> WaterStress :  24.03","Year:  2023 <br> WaterStress :  24.09","Year:  2024 <br> WaterStress :  24.14","Year:  2025 <br> WaterStress :  24.19","Year:  2026 <br> WaterStress :  24.23","Year:  2027 <br> WaterStress :  24.26","Year:  2028 <br> WaterStress :  24.28","Year:  2029 <br> WaterStress :  24.3","Year:  2030 <br> WaterStress :  24.32"],"type":"scatter","name":"Western Pacific Region","marker":{"color":"rgba(255,217,47,1)","line":{"color":"rgba(255,217,47,1)"}},"textfont":{"color":"rgba(255,217,47,1)"},"error_y":{"color":"rgba(255,217,47,1)"},"error_x":{"color":"rgba(255,217,47,1)"},"line":{"color":"rgba(255,217,47,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
