@@ -1,0 +1,34 @@
+---
+title: "Take-home Exercise 3 Part 3"
+author: "Lai Meihao"
+date: "April 1st , 2025"
+date-modified: "last-modified"
+execute: 
+  eval: true
+  echo: true
+  warning: false
+  freeze: true
+---
+
+# 1.Overview 
+
+In this section will cover the Exploratory Data Analysis (EDA)
+
+# 2.Initial Data Preparation 
+
+## 2.1 Install and launch R packages 
+
+The project uses p_loads of pacman package to check if the R packages are installed in the computer.
+
+```{r}
+pacman::p_load(tidyverse, ggplot2, plm,ExPanDaR,lubridate, ggthemes, plotly,dplyr,purrr,lmtest)
+```
+
+2.2 Importing Data
+
+This project will examine a merged dataset from [World Development Indicators (WDI)](https://databank.worldbank.org/reports.aspx?source=2&series=SP.POP.TOTL&country=) from the World Bank, which compiles extensive development data across 266 countries from 1960 to 2023 and [Global Burden of diseases result tools](https://vizhub.healthdata.org/gbd-results/) from Institution for Health Metrics Evaluation, which provide access to a comprehensive set of global health data, from 288 causes of death, 371 disease and injuries, and 88 risk factors in 204 countries and territories, including subnational estimates for 21 countries and territories and years from 1990 to 2021.
+
+```{r}
+data <- read_csv("data/fully_merged_by_country_code.csv")
+
+```

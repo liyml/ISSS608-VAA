@@ -1,0 +1,15 @@
+{
+  "hash": "01741c6ae18a5c2f301c6b1cd0081df3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Take-home Exercise 3 Part 3\"\nauthor: \"Lai Meihao\"\ndate: \"April 1st , 2025\"\ndate-modified: \"last-modified\"\nexecute: \n  eval: true\n  echo: true\n  warning: false\n  freeze: true\n---\n\n\n\n\n\n# 1.Overview \n\nIn this section will cover the Exploratory Data Analysis (EDA)\n\n# 2.Initial Data Preparation \n\n## 2.1 Install and launch R packages \n\nThe project uses p_loads of pacman package to check if the R packages are installed in the computer.\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\npacman::p_load(tidyverse, ggplot2, plm,ExPanDaR,lubridate, ggthemes, plotly,dplyr,purrr,lmtest)\n```\n:::\n\n\n\n\n\n2.2 Importing Data\n\nThis project will examine a merged dataset from [World Development Indicators (WDI)](https://databank.worldbank.org/reports.aspx?source=2&series=SP.POP.TOTL&country=) from the World Bank, which compiles extensive development data across 266 countries from 1960 to 2023 and [Global Burden of diseases result tools](https://vizhub.healthdata.org/gbd-results/) from Institution for Health Metrics Evaluation, which provide access to a comprehensive set of global health data, from 288 causes of death, 371 disease and injuries, and 88 risk factors in 204 countries and territories, including subnational estimates for 21 countries and territories and years from 1990 to 2021.\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndata <- read_csv(\"data/fully_merged_by_country_code.csv\")\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
